@@ -1,4 +1,7 @@
-" Add all plugins
+" BEGIN FILETYPE
+filetype off " Pathogen takes care of this 
+
+" Add all plugins from pathogen
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles() 
 
@@ -28,6 +31,11 @@ autocmd BufRead,BufNewFile *.tex set wrapmargin=1 " Wrap lines in latex docs
 set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 
 " BEGIN KEYBOARD MAPPINGS
+" Change leader
+let mapleader=","
+
+" Open and close NERDTree
+nmap <leader>t :NERDTreeToggle<CR>
 " <CTRL>-t to create a new tab (in both insert and normal mode)
 map <C-t> :tabnew<CR>
 imap <C-t> <ESC>:tabnew<CR>
@@ -44,7 +52,4 @@ map <Space> <c-w>w
 " <DASH> to turn on/off highlighted search
 map <silent> - :silent noh<Bar>echo<CR> 
 
-" BEGIN FILETYPE
-filetype on " Enable filetype detection
-filetype plugin on " Load plugins for specific filetypes
-filetype plugin indent on " Use indentation based on filetype
+
