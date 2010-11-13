@@ -59,12 +59,15 @@ imap <C-Right> <Esc>:tabnext<CR>i
 " <SPACE> to switch windows (in normal mode)
 map <Space> <c-w>w
 
+" ,= to even out all splits
+nmap <leader>= <C-w>=
+
 " ,w to open new vertical split and move to it
-nnoremap <leader>w <C-w>v<C-w>l
+nmap <leader>w <C-w>v<C-w>l
 
 " <DASH> to turn on/off highlighted search
 map <silent> - :silent noh<Bar>echo<CR> 
 
 " Easy copy/paste to clipboard
-noremap <leader>y "+y
-nnoremap <leader>p "+p 
+map <leader>y "+y
+nmap <leader>p "+p 
