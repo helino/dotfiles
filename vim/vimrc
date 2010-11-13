@@ -1,11 +1,13 @@
-" BEGIN FILETYPE
-filetype off " Pathogen takes care of this 
+" DON'T CARE ABOUT VI
+set nocompatible
+
 
 " Add all plugins from pathogen
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles() 
 
 " BEGIN INDENTATION
+filetype plugin indent on " Use different indentation based on filetype
 set expandtab " Turn <TAB> into spaces.
 set softtabstop=4 " Number of spaces <TAB> expands to
 set shiftwidth=4 " The width when pressing >>,<< or == and ai
