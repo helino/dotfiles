@@ -1,6 +1,5 @@
-" DON'T CARE ABOUT VI
+" Don't care about vi support
 set nocompatible
-
 
 " Add all plugins from pathogen
 call pathogen#helptags()
@@ -33,11 +32,20 @@ autocmd BufRead,BufNewFile *.tex set wrapmargin=1 " Wrap lines in latex docs
 set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 
 " BEGIN KEYBOARD MAPPINGS
+
+" Table for remembering different mapping modes:
+"    map type     | normal | visual+select | operator-pending
+" noremap (map)   |   y    |       y       |         y
+" nnoremap (nmap) |   y    |       -       |         -
+" vnoremap (vmap) |   -    |       y       |         -
+" onoremap (omap) |   -    |       -       |         y
+
 " Change leader
 let mapleader=","
 
 " Open and close NERDTree
 nmap <leader>t :NERDTreeToggle<CR>
+
 " <CTRL>-t to create a new tab (in both insert and normal mode)
 map <C-t> :tabnew<CR>
 imap <C-t> <ESC>:tabnew<CR>
@@ -51,7 +59,12 @@ imap <C-Right> <Esc>:tabnext<CR>i
 " <SPACE> to switch windows (in normal mode)
 map <Space> <c-w>w
 
+" ,w to open new vertical split and move to it
+nnoremap <leader>w <C-w>v<C-w>l
+
 " <DASH> to turn on/off highlighted search
 map <silent> - :silent noh<Bar>echo<CR> 
 
-
+" Easy copy/paste to clipboard
+noremap <leader>y "+y
+nnoremap <leader>p "+p 
