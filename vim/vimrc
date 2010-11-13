@@ -1,3 +1,7 @@
+" Add all plugins
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles() 
+
 " BEGIN INDENTATION
 set expandtab " Turn <TAB> into spaces.
 set softtabstop=4 " Number of spaces <TAB> expands to
@@ -7,7 +11,7 @@ set autoindent " Indent a new line equal to the one above.
 " BEGIN LOOK
 syntax on " Use syntax highlightning
 set number " Show line numbers to the left
-colorscheme ir_black " Use ir_black as default colorscheme
+colorscheme desert " Use ir_black as default colorscheme
 set background=dark " Optimize for dark background
 set ruler " Show line and column separated by a comma in lower right
 set showcmd " Show linecount in visual mode
