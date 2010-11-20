@@ -19,6 +19,12 @@ colorscheme desert " Use ir_black as default colorscheme
 set background=dark " Optimize for dark background
 set ruler " Show line and column separated by a comma in lower right
 set showcmd " Show linecount in visual mode
+" Show a subtle red overlay if the line is longer than 80 chars
+highlight OverLength ctermbg=red ctermfg=white guibg=#B0041B
+match OverLength /\%81v.\+/ 
+
+" BEGIN SYNTAX FILES
+au BufRead,BufNewFile *.json set filetype=json
 
 " BEGIN SEARCH
 set hlsearch  " Highlight search
@@ -40,6 +46,24 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 " vnoremap (vmap) |   -    |       y       |         -
 " onoremap (omap) |   -    |       -       |         y
 
+" mapping for camelcase plugin
+" this is for normal movement
+map <silent> w <Plug>CamelCaseMotion_w 
+map <silent> b <Plug>CamelCaseMotion_b 
+map <silent> e <Plug>CamelCaseMotion_e 
+" NOTE: This doesn't seem to be needed?
+"sunmap w 
+"sunmap b 
+"sunmap e 
+
+" this is for inner-word
+omap <silent> iw <Plug>CamelCaseMotion_iw 
+xmap <silent> iw <Plug>CamelCaseMotion_iw 
+omap <silent> ib <Plug>CamelCaseMotion_ib 
+xmap <silent> ib <Plug>CamelCaseMotion_ib 
+omap <silent> ie <Plug>CamelCaseMotion_ie 
+xmap <silent> ie <Plug>CamelCaseMotion_ie
+
 " Change leader
 let mapleader=","
 
@@ -56,6 +80,11 @@ map <C-Right> :tabnext<CR>
 imap <C-Left> <Esc>:tabprevious<CR>i
 imap <C-Right> <Esc>:tabnext<CR>i
 
+map <C-h> :tabprevious<CR>
+map <C-l> :tabnext<CR>
+imap <C-h> <Esc>:tabprevious<CR>i
+imap <C-l> <Esc>:tabnext<CR>i
+
 " <SPACE> to switch windows (in normal mode)
 map <Space> <c-w>w
 
@@ -66,8 +95,11 @@ nmap <leader>= <C-w>=
 nmap <leader>w <C-w>v<C-w>l
 
 " <DASH> to turn on/off highlighted search
-map <silent> - :silent noh<Bar>echo<CR> 
+nnoremap <silent><leader><space> :noh<cr>
 
 " Easy copy/paste to clipboard
 map <leader>y "+y
 nmap <leader>p "+p 
+
+" Remap ESC to ii
+imap ii <Esc>
