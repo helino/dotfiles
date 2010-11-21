@@ -20,8 +20,8 @@ set background=dark " Optimize for dark background
 set ruler " Show line and column separated by a comma in lower right
 set showcmd " Show linecount in visual mode
 " Show a subtle red overlay if the line is longer than 80 chars
-highlight OverLength ctermbg=red ctermfg=white guibg=#B0041B
-match OverLength /\%81v.\+/ 
+autocmd BufEnter * highlight OverLength ctermbg=red ctermfg=white guibg=#B0041B
+autocmd BufEnter * match OverLength /\%81v.\+/ 
 
 " BEGIN SYNTAX FILES
 au BufRead,BufNewFile *.json set filetype=json
