@@ -19,9 +19,43 @@ colorscheme desert " Use ir_black as default colorscheme
 set background=dark " Optimize for dark background
 set ruler " Show line and column separated by a comma in lower right
 set showcmd " Show linecount in visual mode
-" Show a subtle red overlay if the line is longer than 80 chars
-autocmd BufEnter * highlight OverLength ctermbg=red ctermfg=white guibg=#B0041B
-autocmd BufEnter * match OverLength /\%81v.\+/ 
+
+" Turns on highlightning of characters which are after column 80
+function EnableOverLength()
+    highlight overlength ctermbg=red ctermfg=white guibg=#b0041b
+    match OverLength /\%81v.\+/ 
+    if v:version >= 703
+        set colorcolumn=80
+        hi ColorColumn guibg=#2d2d2d
+    endif
+    let g:overlength_on = 1
+endfunction
+
+" Turns off highlightning of characters which are after column 80
+function DisableOverLength()
+        highlight clear OverLength
+        if v:version >= 703
+            highlight clear ColorColumn
+        endif
+        let g:overlength_on = 0
+endfunction
+
+" Toggles highlightning of characters which are after column 80
+function ToggleOverLength()
+    if exists("g:overlength_on") && g:overlength_on == 1
+        call DisableOverLength()
+    else
+        call EnableOverLength()
+    endif
+endfunction
+
+" Enable the highlightning for all new buffers
+function MaybeEnableOverLength()
+    if !exists("g:overlength_on") || g:overlength_on == 1
+        call EnableOverLength()
+    endif
+endfunction
+autocmd BufEnter * call MaybeEnableOverLength() 
 
 " BEGIN SYNTAX FILES
 au BufRead,BufNewFile *.json set filetype=json
@@ -52,7 +86,7 @@ map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b 
 map <silent> e <Plug>CamelCaseMotion_e 
 " NOTE: This doesn't seem to be needed?
-"sunmap w 
+"sunmap w
 "sunmap b 
 "sunmap e 
 
@@ -103,3 +137,6 @@ nmap <leader>p "+p
 
 " Remap ESC to ii
 imap ii <Esc>
+
+" Toogle highlight with ,h
+map <silent><leader>h :call ToggleOverLength()<cr>
