@@ -19,6 +19,7 @@ colorscheme desert " Use ir_black as default colorscheme
 set background=dark " Optimize for dark background
 set ruler " Show line and column separated by a comma in lower right
 set showcmd " Show linecount in visual mode
+set cursorline " A nice line at the current position in the document
 
 " Turns on highlightning of characters which are after column 80
 function EnableOverLength()
