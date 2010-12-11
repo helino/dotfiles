@@ -19,7 +19,6 @@ colorscheme desert " Use ir_black as default colorscheme
 set background=dark " Optimize for dark background
 set ruler " Show line and column separated by a comma in lower right
 set showcmd " Show linecount in visual mode
-set cursorline " A nice line at the current position in the document
 
 " Turns on highlightning of characters which are after column 80
 function EnableOverLength()
@@ -81,24 +80,6 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 " vnoremap (vmap) |   -    |       y       |         -
 " onoremap (omap) |   -    |       -       |         y
 
-" mapping for camelcase plugin
-" this is for normal movement
-map <silent> w <Plug>CamelCaseMotion_w 
-map <silent> b <Plug>CamelCaseMotion_b 
-map <silent> e <Plug>CamelCaseMotion_e 
-" NOTE: This doesn't seem to be needed?
-"sunmap w
-"sunmap b 
-"sunmap e 
-
-" this is for inner-word
-omap <silent> iw <Plug>CamelCaseMotion_iw 
-xmap <silent> iw <Plug>CamelCaseMotion_iw 
-omap <silent> ib <Plug>CamelCaseMotion_ib 
-xmap <silent> ib <Plug>CamelCaseMotion_ib 
-omap <silent> ie <Plug>CamelCaseMotion_ie 
-xmap <silent> ie <Plug>CamelCaseMotion_ie
-
 " Change leader
 let mapleader=","
 
@@ -137,7 +118,7 @@ map <leader>y "+y
 nmap <leader>p "+p 
 
 " Remap ESC to ii
-imap ii <Esc>
+imap jj <Esc>
 
 " Toogle highlight with ,h
 map <silent><leader>h :call ToggleOverLength()<cr>
