@@ -10,7 +10,7 @@
     co = checkout
     ci = commit
     br = branch
-    hist = git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 
 [color]
     branch = auto
