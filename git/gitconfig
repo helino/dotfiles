@@ -1,9 +1,11 @@
+[core]
+    editor = vim
 [user]
-	name = helino
-	email = erik.helin@gmail.com
+    name = helino
+    email = erik.helin@gmail.com
 [alias]
-        st = status
-        ci = commit
+    st = status
+    ci = commit
 [color]
     branch = auto
     diff = auto
