@@ -1,11 +1,17 @@
 [core]
     editor = vim
+
 [user]
     name = helino
     email = erik.helin@gmail.com
+
 [alias]
     st = status
+    co = checkout
     ci = commit
+    br = branch
+    hist = git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+
 [color]
     branch = auto
     diff = auto
