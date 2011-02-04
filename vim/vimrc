@@ -61,6 +61,7 @@ autocmd BufEnter * call MaybeEnableOverLength()
 
 " BEGIN SYNTAX FILES
 au BufRead,BufNewFile *.json set filetype=json
+au BufRead,BufNewFile wscript set filetype=python
 
 " BEGIN SEARCH
 set hlsearch  " Highlight search
