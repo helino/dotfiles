@@ -87,7 +87,7 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 let mapleader=","
 
 " Open and close NERDTree
-nmap <leader>t :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeToggle<CR>
 
 " <CTRL>-t to create a new tab (in both insert and normal mode)
 map <C-t> :tabnew<CR>
