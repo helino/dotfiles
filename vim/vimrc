@@ -70,7 +70,6 @@ set smartcase " Ignore case when searching lowercase
 
 " BEGIN COMPATABILITY
 set backspace=2 " Fix backspace for strange terminals
-autocmd BufRead,BufNewFile *.tex set wrapmargin=1 " Wrap lines in latex docs
 " Saves additional stuff when saving a session
 set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 
