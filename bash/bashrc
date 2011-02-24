@@ -1,0 +1,24 @@
+# Load OS specific config files
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform='mac'
+fi
+
+if [[ "$platform" == 'mac' ]]; then
+    source "$HOME/.mac_bashrc"
+fi
+
+# General functionality for all OS
+PS1='\u@\h:\W\$ '
+
+# Git configuration
+if [[ -s "$HOME/.git-completion.sh" ]]; then
+    source ~/.git-completion.sh
+    PS1='\u@\h:\W$(__git_ps1 :"%s")\$ '
+fi
+
+# Ruby Version Manager (RVM) configuration
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
