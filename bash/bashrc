@@ -10,6 +10,9 @@ fi
 if [[ "$platform" == 'mac' ]]; then
     source "$HOME/.mac_bashrc"
 fi
+if [[ "$platform" == 'linux' ]]; then
+    source "$HOME/.linux_bashrc"
+fi
 
 # General functionality for all OS
 PS1='\u@\h:\W\$ '
