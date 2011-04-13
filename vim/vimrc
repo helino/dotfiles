@@ -132,7 +132,7 @@ imap jj <Esc>
 map <silent><leader>h :call ToggleOverLength()<cr>
 
 function RunAnt()
-    call system("screen -x ant -X stuff \"ant\"")
+    call system("screen -x ant -X stuff \"clear ant -q \"")
 endfunction
 
 map <silent><leader>r :call RunAnt()<cr>
