@@ -76,10 +76,6 @@ set smartcase " Ignore case when searching lowercase
 set backspace=2 " Fix backspace for strange terminals
 " Saves additional stuff when saving a session
 set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
-" Makes copy/paste work with Mac OS X from terminal vim
-if v:version >= 703
-    set clipboard=unnamed
-endif
 
 " BEGIN KEYBOARD MAPPINGS
 
