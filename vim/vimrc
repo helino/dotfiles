@@ -67,6 +67,9 @@ autocmd BufEnter * call MaybeEnableOverLength()
 au BufRead,BufNewFile *.json set filetype=json
 au BufRead,BufNewFile wscript set filetype=python
 
+" BEGIN LATEX
+au BufWritePost *.tex :call system("pdflatex ".expand("%"))
+
 " BEGIN SEARCH
 set hlsearch  " Highlight search
 set incsearch  " Incremental search, search as you type
