@@ -8,9 +8,11 @@ call pathogen#runtime_append_all_bundles()
 " BEGIN INDENTATION
 filetype plugin indent on " Use different indentation based on filetype
 set expandtab " Turn <TAB> into spaces.
+set smarttab " replace tabs at beginning of line with spaces
 set softtabstop=4 " Number of spaces <TAB> expands to
 set shiftwidth=4 " The width when pressing >>,<< or == and ai
 set autoindent " Indent a new line equal to the one above.
+set smartindent " indent a new line after e.g. {
 
 " BEGIN LOOK
 set t_Co=256 " Enable 256 colors in terminals that support it
@@ -21,7 +23,10 @@ set ruler " Show line and column separated by a comma in lower right
 set showcmd " Show linecount in visual mode
 let g:zenburn_high_Contrast = 1 " Use zenburn in darker mode
 colorscheme zenburn " Default colorsceheme
+set showmatch " show matching parenthesis
+set matchtime=1 " the time for showmatch
 
+" BEGIN HIGHLIGHTNING
 " Turns on highlightning of characters which are after column 80
 function EnableOverLength()
     highlight overlength ctermbg=red ctermfg=white guibg=#b0041b
@@ -63,6 +68,8 @@ function MaybeEnableOverLength()
 endfunction
 autocmd BufEnter * call MaybeEnableOverLength() 
 
+highlight SpellBad ctermbg=none ctermfg=red
+
 " BEGIN SYNTAX FILES
 au BufRead,BufNewFile *.json set filetype=json
 au BufRead,BufNewFile wscript set filetype=python
@@ -74,6 +81,7 @@ au BufWritePost *.tex :call system("pdflatex ".expand("%"))
 set hlsearch  " Highlight search
 set incsearch  " Incremental search, search as you type
 set smartcase " Ignore case when searching lowercase
+set gdefault " use /g by default when doing replace
 
 " BEGIN COMPATABILITY
 set backspace=2 " Fix backspace for strange terminals
