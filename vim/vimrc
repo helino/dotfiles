@@ -16,15 +16,26 @@ set smartindent " indent a new line after e.g. {
 
 " BEGIN LOOK
 set t_Co=256 " Enable 256 colors in terminals that support it
-syntax on " Use syntax highlightning
-set number " Show line numbers to the left
+let g:solarized_termcolors=16
+syntax enable " Use syntax highlightning
 set background=dark " Optimize for dark background
-set ruler " Show line and column separated by a comma in lower right
+colorscheme solarized " Default colorsceheme
+set number " Show line numbers to the left
 set showcmd " Show linecount in visual mode
-let g:zenburn_high_Contrast = 1 " Use zenburn in darker mode
-colorscheme zenburn " Default colorsceheme
 set showmatch " show matching parenthesis
 set matchtime=1 " the time for showmatch
+set laststatus=2 " always show the statusbar
+
+" BEGIN STATUSLINE
+" %F = full path (use %f for folder/file)
+" %m = modified flag
+" %r = read-only flag
+" %h = help file flag
+" %{fugitive#statusline()} = the current git branch
+" %l = the current line
+" %L = total number of lines
+" %c = the current column
+set statusline=%F%m%r%h\ %{fugitive#statusline()}\ %=%-15(%l/%L,%c%)\ %P
 
 " BEGIN HIGHLIGHTNING
 " Turns on highlightning of characters which are after column 80
