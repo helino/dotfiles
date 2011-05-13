@@ -107,6 +107,45 @@ let g:yankring_history_file = '.yankring_history'
 " BEGIN SPELLING
 set spellfile=.spell.utf-8.add
 
+" BEGIN NERDTree
+au VimEnter * call MaybeShowNERDTree()
+au BufEnter * :silent call MaybeMirrorNERDTree()
+au WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+
+function ToggleNERDTree()
+    if !exists("g:DoShowNERDTree") || g:DoShowNERDTree == 0
+        let g:DoShowNERDTree = 1
+        NERDTree
+    else
+        let g:DoShowNERDTree = 0
+        NERDTreeClose
+    endif
+endfunction
+
+function MaybeShowNERDTree()
+    if exists("g:DoShowNERDTree") && g:DoShowNERDTree == 1
+        NERDTree
+    endif
+endfunction
+
+function MaybeMirrorNERDTree()
+    if exists("g:DoShowNERDTree") && g:DoShowNERDTree == 1
+        NERDTreeMirror
+    endif
+endfunction
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
+
 " BEGIN KEYBOARD MAPPINGS
 
 " Table for remembering different mapping modes:
@@ -120,7 +159,7 @@ set spellfile=.spell.utf-8.add
 let mapleader=","
 
 " Open and close NERDTree
-nmap <leader>f :NERDTreeToggle<CR>
+nmap <leader>f :call ToggleNERDTree()<CR>
 
 " <CTRL>-t to create a new tab (in both insert and normal mode)
 map <C-t> :tabnew<CR>
