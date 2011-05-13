@@ -93,6 +93,9 @@ set backspace=2 " Fix backspace for strange terminals
 set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 let g:yankring_history_file = '.yankring_history'
 
+" BEGIN SPELLING
+set spellfile=.spell.utf-8.add
+
 " BEGIN KEYBOARD MAPPINGS
 
 " Table for remembering different mapping modes:
