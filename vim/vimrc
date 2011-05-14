@@ -85,13 +85,6 @@ highlight SpellBad ctermbg=none ctermfg=red
 au BufRead,BufNewFile *.json set filetype=json
 au BufRead,BufNewFile wscript set filetype=python
 
-" BEGIN LATEX
-au BufWritePost *.tex :call system("pdflatex ".expand("%"))
-
-" BEGIN HASKELL
-" -t <name-of-session>:<name-of-window>.<number-of-pane>
-au BufWritePost Scratch.hs :call system("tmux send-keys -t 0:0.1 :l \"Space\" Scratch.hs \"Enter\"")
-
 " BEGIN SEARCH
 set hlsearch  " Highlight search
 set incsearch  " Incremental search, search as you type
@@ -195,9 +188,3 @@ imap jj <Esc>
 
 " Toogle highlight with ,h
 map <silent><leader>h :call ToggleOverLength()<cr>
-
-function RunAnt()
-    call system("screen -x ant -X stuff \"clear ant -q \"")
-endfunction
-
-map <silent><leader>r :call RunAnt()<cr>
