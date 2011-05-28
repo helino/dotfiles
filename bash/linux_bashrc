@@ -1,0 +1,2 @@
+alias tmux='TERM=screen-256color tmux'
+alias ls='ls --color'
