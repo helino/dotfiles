@@ -9,8 +9,8 @@ call pathogen#runtime_append_all_bundles()
 filetype plugin indent on " Use different indentation based on filetype
 set expandtab " Turn <TAB> into spaces.
 set smarttab " replace tabs at beginning of line with spaces
-set softtabstop=4 " Number of spaces <TAB> expands to
-set shiftwidth=4 " The width when pressing >>,<< or == and ai
+set softtabstop=4 " Number of spaces <TAB> expands to 
+set shiftwidth=4 " The width when pressing >>,<< or == and ai 
 set autoindent " Indent a new line equal to the one above.
 set smartindent " indent a new line after e.g. {
 
@@ -146,6 +146,22 @@ function ToggleBackground()
         set background=light
     endif
 endfunction
+
+function SetBackgroundBasedOnGnomeTerminalProfile()
+    if has('unix')
+        if filereadable(expand("~/bin/current-gnome-terminal-profile"))
+            let profileName = system('current-gnome-terminal-profile')
+            " Profile1 is Solarized light
+            " Profile0 is Solarized dark
+            if profileName == "Profile1"
+                set background=light
+            elseif profileName == "Profile0"
+                set background=dark
+            endif
+        endif
+    endif
+endfunction
+call SetBackgroundBasedOnGnomeTerminalProfile()
 
 " BEGIN KEYBOARD MAPPINGS
 
