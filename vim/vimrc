@@ -139,6 +139,14 @@ function s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
+function ToggleBackground()
+    if(&background == 'light')
+        set background=dark
+    else
+        set background=light
+    endif
+endfunction
+
 " BEGIN KEYBOARD MAPPINGS
 
 " Table for remembering different mapping modes:
@@ -188,3 +196,6 @@ imap jj <Esc>
 
 " Toogle highlight with ,h
 map <silent><leader>h :call ToggleOverLength()<cr>
+
+" Toggle light/dark background with ,d
+map <silent><leader>d :call ToggleBackground()<cr>
