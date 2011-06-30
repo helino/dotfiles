@@ -207,7 +207,7 @@ nnoremap <silent><leader><space> :noh<cr>
 map <leader>y "+y
 nmap <leader>p "+p 
 
-" Remap ESC to ii
+" Remap ESC to jj
 imap jj <Esc>
 
 " Toogle highlight with ,h
