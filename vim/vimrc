@@ -178,9 +178,8 @@ let mapleader=","
 " Open and close NERDTree
 nmap <leader>f :call ToggleNERDTree()<CR>
 
-" <CTRL>-t to create a new tab (in both insert and normal mode)
-map <C-t> :tabnew<CR>
-imap <C-t> <ESC>:tabnew<CR>
+" ,t to create a new tab in normal mode
+map <leader>t :tabnew<CR>
 
 " Map <C-h> and <C-l> to switch tabs
 map <C-h> :tabprevious<CR>
