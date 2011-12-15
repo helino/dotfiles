@@ -7,7 +7,7 @@
     email = erik.helin@gmail.com
 
 [alias]
-    st = status -s
+    st = status -s -b
     co = checkout
     ci = commit
     br = branch
