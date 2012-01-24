@@ -3,14 +3,14 @@ set nocompatible
 
 " Add all plugins from pathogen
 call pathogen#helptags()
-call pathogen#runtime_append_all_bundles() 
+call pathogen#runtime_append_all_bundles()
 
 " BEGIN INDENTATION
 filetype plugin indent on " Use different indentation based on filetype
 set expandtab " Turn <TAB> into spaces.
 set smarttab " replace tabs at beginning of line with spaces
-set softtabstop=4 " Number of spaces <TAB> expands to 
-set shiftwidth=4 " The width when pressing >>,<< or == and ai 
+set softtabstop=4 " Number of spaces <TAB> expands to
+set shiftwidth=4 " The width when pressing >>,<< or == and ai
 set autoindent " Indent a new line equal to the one above.
 set smartindent " indent a new line after e.g. {
 
@@ -38,10 +38,16 @@ set laststatus=2 " always show the statusbar
 set statusline=%F%m%r%h\ %{fugitive#statusline()}\ %=%-15(%l/%L,%c%)\ %P
 
 " BEGIN HIGHLIGHTNING
+" highlight trailing whitespace
+highlight TrailingWhitespace ctermbg=red ctermfg=white
+au VimEnter * match TrailingWhitespace /\s\+$/
+au InsertLeave * match TrailingWhitespace /\s\+$/
+au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
+
 " Turns on highlightning of characters which are after column 80
 function EnableOverLength()
-    highlight overlength ctermbg=red ctermfg=white guibg=#b0041b
-    match OverLength /\%81v.\+/ 
+    highlight Overlength ctermbg=red ctermfg=white guibg=#b0041b
+    match OverLength /\%81v.\+/
     if v:version >= 703
         set colorcolumn=80
         if has("gui_running")
@@ -77,7 +83,7 @@ function MaybeEnableOverLength()
         call EnableOverLength()
     endif
 endfunction
-autocmd BufEnter * call MaybeEnableOverLength() 
+autocmd BufEnter * call MaybeEnableOverLength()
 
 highlight SpellBad ctermbg=none ctermfg=red
 
@@ -99,45 +105,6 @@ let g:yankring_history_file = '.yankring_history'
 
 " BEGIN SPELLING
 set spellfile=.spell.utf-8.add
-
-" BEGIN NERDTree
-au VimEnter * call MaybeShowNERDTree()
-au BufEnter * :silent call MaybeMirrorNERDTree()
-au WinEnter * call s:CloseIfOnlyNerdTreeLeft()
-
-function ToggleNERDTree()
-    if !exists("g:DoShowNERDTree") || g:DoShowNERDTree == 0
-        let g:DoShowNERDTree = 1
-        NERDTree
-    else
-        let g:DoShowNERDTree = 0
-        NERDTreeClose
-    endif
-endfunction
-
-function MaybeShowNERDTree()
-    if exists("g:DoShowNERDTree") && g:DoShowNERDTree == 1
-        NERDTree
-    endif
-endfunction
-
-function MaybeMirrorNERDTree()
-    if exists("g:DoShowNERDTree") && g:DoShowNERDTree == 1
-        NERDTreeMirror
-    endif
-endfunction
-
-" Close all open buffers on entering a window if the only
-" buffer that's left is the NERDTree buffer
-function s:CloseIfOnlyNerdTreeLeft()
-  if exists("t:NERDTreeBufName")
-    if bufwinnr(t:NERDTreeBufName) != -1
-      if winnr("$") == 1
-        q
-      endif
-    endif
-  endif
-endfunction
 
 function ToggleBackground()
     if(&background == 'light')
@@ -204,7 +171,7 @@ nnoremap <silent><leader><space> :noh<cr>
 
 " Easy copy/paste to clipboard
 map <leader>y "+y
-nmap <leader>p "+p 
+nmap <leader>p "+p
 
 " Remap ESC to jj
 imap jj <Esc>
