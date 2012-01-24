@@ -1,0 +1,41 @@
+# Change the following six lines to match your Gmail account details
+source ~/.mutt/credentials
+
+set editor = "vim"
+
+# imap (specific for gmail)
+# see http://support.google.com/mail/bin/answer.py?hl=en&answer=78892
+# and http://superuser.com/questions/224524/sending-mails-via-mutt-and-gmail-duplicates  
+set folder = "imaps://imap.gmail.com:993"
+set record=""
+set spoolfile = "+INBOX"
+set postponed = "+[GMail]/Drafts"
+set imap_check_subscribed = yes
+set delete = yes
+set include
+set move = no
+
+# need to set keep-alive low to keep gmail pleased
+set imap_keepalive = 50
+
+# checking for new emails
+set mail_check = 60
+set timeout = 300
+
+# folders
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
+
+# sorting emails
+set sort = 'threads'
+set sort_aux = 'reverse-last-date-received'
+
+# aliases
+set alias_file=~/.mutt/aliases
+set sort_alias=alias
+set reverse_alias=yes
+source $alias_file
+
+# solarized
+source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
