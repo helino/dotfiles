@@ -41,6 +41,9 @@ set statusline=%F%m%r%h\ %{fugitive#statusline()}\ %=%-15(%l/%L,%c%)\ %P
 " highlight trailing whitespace
 highlight TrailingWhitespace ctermbg=red ctermfg=white
 au VimEnter * match TrailingWhitespace /\s\+$/
+"au BufEnter * match TrailingWhitespace /\s\+$/
+au BufWinEnter * match TrailingWhitespace /\s\+$/
+"au WinEnter * match TrailingWhitespace /\s\+$/
 au InsertLeave * match TrailingWhitespace /\s\+$/
 au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
 
