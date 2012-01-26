@@ -39,18 +39,19 @@ set statusline=%F%m%r%h\ %{fugitive#statusline()}\ %=%-15(%l/%L,%c%)\ %P
 
 " BEGIN HIGHLIGHTNING
 " highlight trailing whitespace
-highlight TrailingWhitespace ctermbg=red ctermfg=white
-au VimEnter * match TrailingWhitespace /\s\+$/
-"au BufEnter * match TrailingWhitespace /\s\+$/
-au BufWinEnter * match TrailingWhitespace /\s\+$/
-"au WinEnter * match TrailingWhitespace /\s\+$/
-au InsertLeave * match TrailingWhitespace /\s\+$/
-au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
+" If the vim version is less than 7.03, I prefer the highlightning of lines
+" that are longer than 80 chars
+if v:version >= 703
+    highlight TrailingWhitespace ctermbg=red ctermfg=white
+    au ColorScheme * highlight TrailingWhitespace ctermbg=red ctermfg=white
+    au VimEnter * match TrailingWhitespace /\s\+$/
+    au BufWinEnter * match TrailingWhitespace /\s\+$/
+    au InsertLeave * match TrailingWhitespace /\s\+$/
+    au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
+endif
 
 " Turns on highlightning of characters which are after column 80
 function EnableOverLength()
-    highlight Overlength ctermbg=red ctermfg=white guibg=#b0041b
-    match OverLength /\%81v.\+/
     if v:version >= 703
         set colorcolumn=80
         if has("gui_running")
@@ -58,6 +59,9 @@ function EnableOverLength()
         else
             hi ColorColumn ctermbg=Black
         endif
+    else
+        highlight Overlength ctermbg=red ctermfg=white guibg=#b0041b
+        match OverLength /\%81v.\+/
     endif
     let g:overlength_on = 1
 endfunction
