@@ -12,7 +12,6 @@
     ci = commit
     br = branch
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    out = log origin..HEAD
 
 [color]
     branch = auto
@@ -20,9 +19,9 @@
     status = auto
 
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+    current = yellow bold
+    local = green bold
+    remote = red bold
 
 [color "diff"]
     meta = yellow bold
@@ -31,6 +30,7 @@
     new = green bold
 
 [color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
+    added = green bold
+    changed = yellow bold
+    untracked = cyan bold
+    branch = green bold
