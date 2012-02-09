@@ -95,8 +95,10 @@ autocmd BufEnter * call MaybeEnableOverLength()
 highlight SpellBad ctermbg=none ctermfg=red
 
 " BEGIN SYNTAX FILES
-au BufRead,BufNewFile *.json set filetype=json
-au BufRead,BufNewFile wscript set filetype=python
+au BufRead,BufNewFile *.json    set filetype=json
+au BufRead,BufNewFile wscript   set filetype=python
+au BufRead,BufNewFile *.md      set filetype=markdown
+au BufRead,BufNewFile *.s       set filetype=nasm
 
 " BEGIN SEARCH
 set hlsearch  " Highlight search
