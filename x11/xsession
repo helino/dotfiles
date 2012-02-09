@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# make it possible to switch between swedish and us keyboard
+setxkbmap -layout "us, se" -option "grp:alt_shift_toggle"
+
+# load X resources (xterm font, xterm colors)
+xrdb ~/.Xresources
+
+# start the network applet
+nm-applet --sm-disable &
+
+# set statusbar
+while true
+do
+   if acpi -a | grep off-line > /dev/null; then
+       xsetroot -name "Bat. $(awk 'sub(/,/,"") {print $3, $4}' <(acpi -b)) | $(date +"%a, %b %d %R")"
+   else
+       xsetroot -name "$(date +"%a, %b %d %R")"
+   fi
+   sleep 1s
+done &
+
+exec dwm
