@@ -1,5 +1,3 @@
-alias tmux='TERM=screen-256color tmux'
-alias ls='ls --color'
 if [ -d ~/bin ]; then
     export PATH="~/bin:$PATH"
 fi
