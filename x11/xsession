@@ -9,6 +9,9 @@ xrdb ~/.Xresources
 # start the network applet
 nm-applet --sm-disable &
 
+# start devmon to automount USB memory sticks etc.
+devmon &
+
 # set statusbar
 while true
 do
