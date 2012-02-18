@@ -12,8 +12,11 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-git'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'mileszs/ack.vim'
+Bundle 'sjl/threesome.vim'
 Bundle 'helino/vim-json'
 Bundle 'helino/vim-markdown'
 Bundle 'helino/vim-nasm'
@@ -23,6 +26,7 @@ Bundle 'helino/vim-ftplugins'
 " vim.org
 Bundle 'haskell.vim'
 Bundle 'matchit.zip'
+Bundle 'scratch.vim'
 
 filetype plugin indent on "required by vundle
 
@@ -67,12 +71,14 @@ highlight SpellBad ctermbg=none ctermfg=red
 set hlsearch   " Highlight search
 set incsearch  " Incremental search, search as you type
 set smartcase  " Ignore case when searching lowercase
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
 " misc
 set backspace=2 " Fix backspace for strange terminals
 
-" ctags
+" commands
 command! Ctags silent execute "!ctags *.c *.h &" | redraw!
+command! -nargs=* Make make <args> | cwindow 5
 
 " mappings
 " ===============================================================
@@ -85,7 +91,8 @@ command! Ctags silent execute "!ctags *.c *.h &" | redraw!
 " ===============================================================
 
 " Set leader to ,
-let mapleader=","
+let mapleader=','
+let maplocalleader='\'
 
 " ,t to create a new tab in normal mode
 map <leader>t :tabnew<CR>
