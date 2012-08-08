@@ -27,3 +27,8 @@ fi
 
 # use vi keybindings
 set -o vi
+
+# settings for history
+export HISTCONTROL=erasedups
+export HISTSIZE=50000
+shopt -s histappend
