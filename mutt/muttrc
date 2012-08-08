@@ -5,7 +5,7 @@ set editor = "vim"
 
 # imap (specific for gmail)
 # see http://support.google.com/mail/bin/answer.py?hl=en&answer=78892
-# and http://superuser.com/questions/224524/sending-mails-via-mutt-and-gmail-duplicates  
+# and http://superuser.com/questions/224524/sending-mails-via-mutt-and-gmail-duplicates
 set folder = "imaps://imap.gmail.com:993"
 set record=""
 set spoolfile = "+INBOX"
