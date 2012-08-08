@@ -41,13 +41,19 @@ set smartindent " indent a new line after e.g. {
 " look
 set t_Co=256 " enable 256 colors in terminals that support it
 syntax enable " use syntax highlightning
-set background=dark " optimize for dark background
+let termbg="dark" " use dark background as default
+source ~/.config/Terminal/termbg.vim
+if termbg == "dark"
+    set background=dark
+endif
+
 colorscheme solarized " default colorsceheme
 set number " show line numbers to the left
 set showcmd " show linecount in visual mode
 set showmatch " show matching parenthesis
 set matchtime=1 " the time for showmatch
 set laststatus=2 " always show the statusbar
+call togglebg#map("")
 
 " statusline
 "
