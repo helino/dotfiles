@@ -1,4 +1,0 @@
-alias tmux='TERM=screen-256color tmux'
-alias ls='ls --color'
-alias hoogle='/home/erik/.cabal/bin/hoogle'
-alias ack='ack-grep'

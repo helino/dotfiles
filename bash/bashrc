@@ -1,4 +1,4 @@
-# Load OS specific config files
+# Load OS specific config file
 platform='unknown'
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
@@ -13,18 +13,3 @@ fi
 if [[ "$platform" == 'linux' ]]; then
     source "$HOME/.linux_bashrc"
 fi
-
-# Loading all aliases
-source "$HOME/.bash_aliases"
-
-# General functionality for all OS
-PS1='\u@\h:\W\$ '
-
-# Git configuration
-if [[ -s "$HOME/.git-completion.sh" ]]; then
-    source ~/.git-completion.sh
-    PS1='\u@\h:\W$(__git_ps1 :"%s")\$ '
-fi
-
-# Ruby Version Manager (RVM) configuration
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

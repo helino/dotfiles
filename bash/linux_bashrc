@@ -1,3 +1,19 @@
+# add ~/bin to the path
 if [ -d ~/bin ]; then
     export PATH="~/bin:$PATH"
+fi
+
+# loading all aliases
+if [[ -s "$HOME/.bash_aliases ]]; then
+    source "$HOME/.bash_aliases"
+fi
+
+# set the prompt
+PS1='\u@\h:\W\$ '
+
+# load git autocompletion and make the prompt git aware
+# (only if the file .git-completion.sh does exist)
+if [[ -s "$HOME/.git-completion.sh" ]]; then
+    source ~/.git-completion.sh
+    PS1='\u@\h:\W$(__git_ps1 :"%s")\$ '
 fi
