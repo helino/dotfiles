@@ -42,7 +42,9 @@ set smartindent " indent a new line after e.g. {
 set t_Co=256 " enable 256 colors in terminals that support it
 syntax enable " use syntax highlightning
 let termbg="dark" " use dark background as default
-source ~/.config/Terminal/termbg.vim
+if filereadable("~/.config/Terminal/termbg.vim")
+    source ~/.config/Terminal/termbg.vim
+endif
 if termbg == "dark"
     set background=dark
 endif
