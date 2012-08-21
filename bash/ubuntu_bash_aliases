@@ -1,3 +1,5 @@
-alias ack="ack-grep"
+alias ack='ack-grep'
 alias ls='ls --color'
 alias tmux='TERM=screen-256color tmux'
+alias py='python'
+alias rb='ruby'
