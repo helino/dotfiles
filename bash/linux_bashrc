@@ -1,6 +1,6 @@
 # add ~/bin to the path
 if [ -d ~/bin ]; then
-    export PATH="~/bin:$PATH"
+    export PATH="~/bin:~/bin/warsow:$PATH"
 fi
 
 # loading all aliases
@@ -16,13 +16,6 @@ PS1='\u@\h:\W\$ '
 if [[ -s "$HOME/.git-completion.sh" ]]; then
     source ~/.git-completion.sh
     PS1='\u@\h:\W$(__git_ps1 :"%s")\$ '
-fi
-
-# set up alt-shift to toggle between swedish and us keyboard layout and use
-# caps lock as a control key
-# NOTE: this is only being executed if X is running
-if [ $DISPLAY ]; then
-    setxkbmap -layout "us, se" -option "grp:alt_shift_toggle,ctrl:nocaps"
 fi
 
 # use vi keybindings
