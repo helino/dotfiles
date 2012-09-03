@@ -1,6 +1,6 @@
 ! URxvt general settings
 URxvt.scrollBar:    false
-URxvt.font:         xft:Ubuntu Mono:size=11:antialias=true:hinting=true
+URxvt.font:         xft:Terminus:pixelsize=14
 URxvt.cursorBlink:  false
 URxvt.visualBell:   false
 
