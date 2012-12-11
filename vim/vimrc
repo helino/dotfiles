@@ -1,132 +1,96 @@
-" Don't care about vi support
-set nocompatible
+" COMPATABILITY
+    set nocompatible        " dont' care about vi compatability
+    set backspace=2         " fixes backspace for weird terminals
 
-" vundle
-filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-Bundle 'gmarik/vundle'
+" VUNDLE
+    filetype off
+    set rtp+=~/.vim/bundle/vundle
+    call vundle#rc()
+    Bundle 'gmarik/vundle'
 
-" bundles
-" github
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-git'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'mileszs/ack.vim'
-Bundle 'sjl/threesome.vim'
-Bundle 'helino/vim-json'
-Bundle 'helino/vim-markdown'
-Bundle 'helino/vim-nasm'
-Bundle 'helino/vim-whitespace'
-Bundle 'helino/vim-ftplugins'
+" BUNDLES
+    Bundle 'scrooloose/nerdcommenter'
+    Bundle 'altercation/vim-colors-solarized'
+    Bundle 'mileszs/ack.vim'
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'helino/vim-json'
+    Bundle 'helino/vim-markdown'
+    Bundle 'helino/vim-nasm'
+    Bundle 'helino/vim-whitespace'
+    Bundle 'helino/vim-ftplugins'
+    Bundle 'matchit.zip'
+    Bundle 'sjl/splice.vim'
 
-" vim.org
-Bundle 'haskell.vim'
-Bundle 'matchit.zip'
-Bundle 'scratch.vim'
+filetype plugin indent on   " required by vundle
 
-filetype plugin indent on "required by vundle
+" INDENTATION
+    set tabstop=4           " tab is 4 spaces
+    set expandtab           " turn tab into spaces.
+    set smarttab            " replace tabs at beginning of line with spaces
+    set shiftwidth=4        " the width when pressing >>,<< or == and ai
+    set autoindent          " indent a new line equal to the one above.
+    set smartindent         " indent a new line after e.g. {
 
-" indentation
-set tabstop=4 " tab is 4 spaces
-set expandtab " Turn tab into spaces.
-set smarttab " replace tabs at beginning of line with spaces
-set shiftwidth=4 " the width when pressing >>,<< or == and ai
-set autoindent " indent a new line equal to the one above.
-set smartindent " indent a new line after e.g. {
+" LOOK
+    set t_Co=256            " enable 256 colors in terminals that support it
+    syntax enable           " use syntax highlightning
+    set bg=dark
+    colorscheme solarized   " use solarized as default colorscheme
+    call togglebg#map("")   " work around to enable the :ToggleBG command
+    set showcmd             " show linecount in visual mode
+    set showmatch           " show matching parenthesis
+    set matchtime=1         " the time for showmatch
+    set laststatus=2        " always show the statusbar
+    set colorcolumn=80      " highlight column 80
+    " make mispelled words red no matter the colorscheme
+    highlight SpellBad ctermbg=none ctermfg=red
 
-" look
-set t_Co=256 " enable 256 colors in terminals that support it
-syntax enable " use syntax highlightning
-let termbg="dark" " use dark background as default
-if filereadable("~/.config/Terminal/termbg.vim")
-    source ~/.config/Terminal/termbg.vim
-endif
-if termbg == "dark"
-    set background=dark
-endif
+" SEARCH
+    set hlsearch            " Highlight search
+    set incsearch           " Incremental search, search as you type
+    set smartcase           " Ignore case when searching lowercase
+    let g:ackprg="ack-grep -H --nocolor --nogroup --column" " ack setup
 
-colorscheme solarized " default colorsceheme
-set number " show line numbers to the left
-set showcmd " show linecount in visual mode
-set showmatch " show matching parenthesis
-set matchtime=1 " the time for showmatch
-set laststatus=2 " always show the statusbar
-call togglebg#map("")
+" TAGS
+    set tags=./tags;/
 
-" statusline
-"
-" %F = full path (use %f for folder/file)
-" %m = modified flag
-" %r = read-only flag
-" %h = help file flag
-" %{fugitive#statusline()} = the current git branch
-" %l = the current line
-" %L = total number of lines
-" %c = the current column
-set statusline=%F%m%r%h\ %{fugitive#statusline()}\ %=%-15(%l/%L,%c%)\ %P
+" MAPPINGS
+    " ===============================================================
+    " |      type       | normal | visual+select | operator-pending |
+    " |-------------------------------------------------------------|
+    " | noremap (map)   |   y    |       y       |         y        |
+    " | nnoremap (nmap) |   y    |       -       |         -        |
+    " | vnoremap (vmap) |   -    |       y       |         -        |
+    " | onoremap (omap) |   -    |       -       |         y        |
+    " ===============================================================
+    let mapleader=','
+    let maplocalleader='\'
 
-" long lines
-set colorcolumn=80
+    " ,t to create a new tab in normal mode
+    map <leader>t :tabnew<CR>
 
-" bad spelling
-highlight SpellBad ctermbg=none ctermfg=red
+    " <C-h> and <C-l> to switch tabs
+    map <C-h> :tabprevious<CR>
+    map <C-l> :tabnext<CR>
+    imap <C-h> <Esc>:tabprevious<CR>i
+    imap <C-l> <Esc>:tabnext<CR>i
 
-" search
-set hlsearch   " Highlight search
-set incsearch  " Incremental search, search as you type
-set smartcase  " Ignore case when searching lowercase
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+    " <C-j> to break the line at cursor
+    nmap <NL> i<CR><RIGHT><ESC>
 
-" misc
-set backspace=2 " Fix backspace for strange terminals
+    " space to switch windows
+    map <Space> <c-w>w
 
-" commands
-command! Ctags silent execute "!ctags *.c *.h &" | redraw!
-command! -nargs=* Make make <args> | cwindow 5
+    " ,space to turn on/off highlighted search
+    nmap <silent><leader><space> :noh<cr>
 
-" mappings
-" ===============================================================
-" |      type       | normal | visual+select | operator-pending |
-" |-------------------------------------------------------------|
-" | noremap (map)   |   y    |       y       |         y        |
-" | nnoremap (nmap) |   y    |       -       |         -        |
-" | vnoremap (vmap) |   -    |       y       |         -        |
-" | onoremap (omap) |   -    |       -       |         y        |
-" ===============================================================
+    " easy copy/paste to clipboard
+    map <leader>y "+y
+    nmap <leader>p "+p
 
-" Set leader to ,
-let mapleader=','
-let maplocalleader='\'
+    " remap ESC to jj
+    imap jj <Esc>
 
-" ,t to create a new tab in normal mode
-map <leader>t :tabnew<CR>
-
-" <C-h> and <C-l> to switch tabs
-map <C-h> :tabprevious<CR>
-map <C-l> :tabnext<CR>
-imap <C-h> <Esc>:tabprevious<CR>i
-imap <C-l> <Esc>:tabnext<CR>i
-
-" <C-j> to break the line at cursor
-nmap <NL> i<CR><RIGHT><ESC>
-
-" space to switch windows
-map <Space> <c-w>w
-
-" ,space to turn on/off highlighted search
-nmap <silent><leader><space> :noh<cr>
-
-" easy copy/paste to clipboard
-map <leader>y "+y
-nmap <leader>p "+p
-
-" remap ESC to jj
-imap jj <Esc>
-
-" move between visual lines, not logical
-nmap j gj
-nmap k gk
+    " move between visual lines, not logical
+    nmap j gj
+    nmap k gk
