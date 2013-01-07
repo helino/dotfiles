@@ -18,3 +18,8 @@ set -o vi
 export HISTCONTROL=erasedups
 export HISTSIZE=50000
 shopt -s histappend
+
+# autocompletion
+if [[ -f /etc/bash_completion ]]; then
+    . /etc/bash_completion
+fi
