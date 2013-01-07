@@ -2,6 +2,6 @@
 
 xrdb -merge ~/.Xresources
 
-xloadimage -onroot -fullscreen ~/pictures/wallpaper.jpg
+xsetroot -solid '#333333'
 
 setxkbmap -layout "us, se" -option "grp:alt_shift_toggle,ctrl:nocaps"
