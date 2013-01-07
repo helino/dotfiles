@@ -1,0 +1,23 @@
+[ui]
+username = ehelin
+ignore = ~/.hgignore
+
+[merge-tools]
+kdiff3.args = --L1 base --L2 local --L3 other $base $local $other -o $output
+
+[extensions]
+graphlog =
+mq =
+rebase =
+color =
+
+[diff]
+git = 1
+
+[alias]
+show = !$HG log --color=always -pvr $1 | less -R
+ll =!$HG glog --color=always | less -R
+edit = !vim $($HG loc $1)
+
+dl = !$HG diff --color=always | less -R
+dq = !$HG qdiff --color=always | less -R
