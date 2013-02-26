@@ -10,6 +10,7 @@ graphlog =
 mq =
 rebase =
 color =
+purge =
 
 [diff]
 git = 1
