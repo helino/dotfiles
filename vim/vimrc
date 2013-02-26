@@ -1,6 +1,7 @@
 " COMPATABILITY
     set nocompatible        " dont' care about vi compatability
     set backspace=2         " fixes backspace for weird terminals
+    set encoding=utf-8
 
 " VUNDLE
     filetype off
@@ -12,6 +13,7 @@
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'mileszs/ack.vim'
+    Bundle 'Lokaltog/vim-powerline'
     Bundle 'kien/ctrlp.vim'
     Bundle 'helino/vim-json'
     Bundle 'helino/vim-markdown'
@@ -50,6 +52,7 @@ filetype plugin indent on   " required by vundle
     set incsearch           " Incremental search, search as you type
     set smartcase           " Ignore case when searching lowercase
     let g:ackprg="ack-grep -H --nocolor --nogroup --column" " ack setup
+    let g:ctrlp_clear_cache_on_exit=0
 
 " TAGS
     set tags=./tags;/
