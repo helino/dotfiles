@@ -1,3 +1,5 @@
 syntax: glob
 *.swp
 *.rej
+webrev
+webrev.zip
