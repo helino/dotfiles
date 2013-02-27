@@ -49,3 +49,11 @@ setopt append_history inc_append_history no_share_history
 
 # Expansion
 setopt magic_equal_subst
+
+# Add ~/bin to path
+export PATH="$PATH:$HOME/bin"
+
+# Source functions
+if [[ -s $HOME/.zsh_functions ]]; then
+    source $HOME/.zsh_functions
+fi
