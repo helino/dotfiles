@@ -46,3 +46,6 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=50000
 setopt append_history inc_append_history no_share_history
+
+# Expansion
+setopt magic_equal_subst
