@@ -1,1 +1,4 @@
 imap jj <Esc>
+map <C-h> gT
+map <C-l> gt
+set scrollbars=false
