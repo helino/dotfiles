@@ -3,6 +3,8 @@ URxvt.scrollBar:    false
 URxvt.font:         xft:Terminus:pixelsize=14
 URxvt.cursorBlink:  false
 URxvt.visualBell:   false
+URxvt.saveLines:    65535
+URxvt.print-pipe:   cat > $(TMPDIR=$HOME mktemp urxvt.XXXXXX)
 
 ! Clickable URLs in URxvt
 URxvt.perl-ext-common:  default,matcher
