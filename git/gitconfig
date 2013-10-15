@@ -5,13 +5,9 @@
 [merge]
     tool = threesome
 
-[mergetool "threesome"]
-    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'ThreesomeInit'"
+[mergetool "splice"]
+    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'Splice'"
     trustExitCode = true
-
-[user]
-    name = helino
-    email = erik.helin@gmail.com
 
 [alias]
     st = status -s -b
@@ -24,20 +20,3 @@
     branch = auto
     diff = auto
     status = auto
-
-[color "branch"]
-    current = yellow bold
-    local = green bold
-    remote = red bold
-
-[color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
-
-[color "status"]
-    added = green bold
-    changed = yellow bold
-    untracked = cyan bold
-    branch = green bold
