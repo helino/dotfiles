@@ -2,3 +2,7 @@ imap jj <Esc>
 map <C-h> gT
 map <C-l> gt
 set scrollbars=false
+set popups=tab
+
+autocmd LocationChange .*                   js modes.passAllKeys = false
+autocmd LocationChange mail\\.google\\.com  js modes.passAllKeys = true
