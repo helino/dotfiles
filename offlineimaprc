@@ -1,0 +1,34 @@
+# replace ACCOUNT with the name of the account
+# replace USERNAME with the IMAP username
+# replace HOST with the address to the IMAP server (default ports expected)
+
+[general]
+accounts = ACCOUNT
+pythonfile = ~/.offlineimap.py
+maxaccounts = 1
+
+[Account ACCOUNT]
+postsynchook = notmuch new
+localrepository = ACCOUNT-local
+remoterepository = ACCOUNT-remote
+status_backend = sqlite
+
+[Repository ACCOUNT-local]
+type = Maildir
+localfolders = ~/.mail/ACCOUNT
+
+[Repository ACCOUNT-remote]
+type = IMAP
+remotehost = HOST
+remoteuser = USERNAME
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remotepasseval = keyring.get_password("offlineimap", "USERNAME")
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(foldername)s"
+sep = " "
+footer = "\n"
