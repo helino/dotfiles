@@ -1,11 +1,4 @@
-# Colors
-autoload -U colors
-colors
-
-# Moving around
-setopt auto_cd autopushd
-
-# VIM Keybindings (+ some Emacs mixed up in them ;))
+# KEYS
 bindkey -v
 bindkey -M viins 'jj' vi-cmd-mode
 bindkey -M viins "^[[A" up-line-or-history
@@ -14,46 +7,25 @@ bindkey "^?" backward-delete-char
 bindkey "^R" history-incremental-search-backward
 bindkey -s '^O' 'cd ..\n'
 
-# Correction
-setopt correct
-export SPROMPT="Correct $fg[red]%R$reset_color to $fg[green]%r$reset_color? (Yes, No, Abort, Edit) "
+# ALIAS
+alias tmux='TERM=xterm-256color tmux'
 
-# Prompt
-PROMPT="$fg[magenta]%n$reset_color at $fg[yellow]%m$reset_color in $fg[green]%d$reset_color
+# PROMPT
+PROMPT="[%n %m %B%2c%b]
 > "
 
-# files
-alias -s java=vim
-alias -s cpp=vim
-alias -s hpp=vim
-alias -s c=vim
-alias -s txt=vim
-alias -s md=vim
-alias -s py=vim
+# PATH
+export PATH="$HOME/bin:$PATH"
 
-# aliases
-alias ls='ls --color'
-alias ack='ack-grep'
-
-# completion
+# COMPLETION
 autoload -U compinit
 compinit
 zstyle ':completion:*' menu select
 setopt completealiases
+setopt magic_equal_subst
 
-# history
+# HISTORY
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=50000
 setopt append_history inc_append_history no_share_history
-
-# Expansion
-setopt magic_equal_subst
-
-# Add ~/bin to path
-export PATH="$PATH:$HOME/bin"
-
-# Source functions
-if [[ -s $HOME/.zsh_functions ]]; then
-    source $HOME/.zsh_functions
-fi
