@@ -3,7 +3,10 @@ username = ehelin
 ignore = ~/.hgignore
 
 [merge-tools]
-kdiff3.args = --L1 base --L2 local --L3 other $base $local $other -o $output
+splice.executable = vim
+splice.args = -f $base $local $other $output -c 'SpliceInit'
+splice.premerge = keep
+splice.priority = 1
 
 [extensions]
 graphlog =
@@ -11,14 +14,22 @@ mq =
 rebase =
 color =
 purge =
+pager =
 
 [diff]
 git = 1
 
 [alias]
-show = !$HG log --color=always -pvr $1 | less -R
-ll =!$HG glog --color=always | less -R
-edit = !vim $($HG loc $1)
+show = !$HG log -pvr $1
+ll = !$HG glog
 
-dl = !$HG diff --color=always | less -R
-dq = !$HG qdiff --color=always | less -R
+dl = !$HG diff
+dq = !$HG qdiff
+
+qi = qimport -P
+
+[http_proxy]
+host =
+
+[pager]
+pager = less -FRX
