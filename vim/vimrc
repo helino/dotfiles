@@ -22,6 +22,7 @@
     Bundle 'helino/vim-ftplugins'
     Bundle 'matchit.zip'
     Bundle 'sjl/splice.vim'
+    Bundle 'vim-scipts/OmniCppComplete'
 
 filetype plugin indent on   " required by vundle
 
@@ -54,6 +55,17 @@ filetype plugin indent on   " required by vundle
     set ignorecase          " Ignore case completely
     let g:ackprg="ack-grep -H --nocolor --nogroup --column" " ack setup
     let g:ctrlp_clear_cache_on_exit=0
+    let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\.git$\|\.hg$\|\jtwork$\|\jtreport$\|\.*\webrev.*$\|\.*\build.*$',
+        \ 'file': '\.out$\|\.so$\|\.class$\|\tags$\|\.o$\|\.o.d$\|\.rej$'
+        \ }
+    set grepprg=ack-grep\ -a
+
+set clipboard=unnamed
+set completeopt=menu,menuone,longest
+
+let g:netrw_liststyle = 3
+let g:netrw_list_hide = ".hg"
 
 " TAGS
     set tags=./tags;/
@@ -84,6 +96,9 @@ filetype plugin indent on   " required by vundle
 
     " space to switch windows
     map <Space> <c-w>w
+
+    " Search for the current word with ack
+    map <C-a> :Ack<cr>
 
     " ,space to turn on/off highlighted search
     nmap <silent><leader><space> :noh<cr>
