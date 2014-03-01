@@ -15,18 +15,24 @@ rebase =
 color =
 purge =
 pager =
+record =
+shelve =
+hgext.extdiff =
+
+[extdiff]
+cmd.vimdiff =
 
 [diff]
 git = 1
+showfunc = 1
+unified = 8
 
 [alias]
 show = !$HG log -pvr $1
 ll = !$HG glog
-
-dl = !$HG diff
-dq = !$HG qdiff
-
-qi = qimport -P
+qtip = !$HG export qtip
+ql = qseries -v
+qvimdiff = vimdiff -r -2
 
 [http_proxy]
 host =
