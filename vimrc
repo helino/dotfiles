@@ -3,21 +3,6 @@ set nocompatible        " dont' care about vi compatability
 set backspace=2         " fixes backspace for weird terminals
 set encoding=utf-8
 
-" VUNDLE
-filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-Bundle 'gmarik/vundle'
-
-" BUNDLES
-Bundle 'helino/vim-json'
-Bundle 'helino/vim-markdown'
-Bundle 'helino/vim-nasm'
-Bundle 'helino/vim-whitespace'
-Bundle 'helino/vim-ftplugins'
-
-filetype plugin indent on   " required by vundle
-
 " INDENTATION
 set tabstop=4           " tab is 4 spaces
 set expandtab           " turn tab into spaces.
@@ -34,6 +19,21 @@ set showcmd             " show linecount in visual mode
 set showmatch           " show matching parenthesis
 set matchtime=1         " the time for showmatch
 set laststatus=2        " always show the statusline
+autocmd BufNewFile,BufRead *.json set ft=javascript " use js syntax for json
+autocmd BufNewFile,BufRead *.md set ft=markdown " .md files are markdown
+
+" based on http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+highlight TrailingWhitespace ctermbg=red ctermfg=white
+au ColorScheme * highlight TrailingWhitespace ctermbg=red ctermfg=white
+au VimEnter * match TrailingWhitespace /\s\+$/
+au BufWinEnter * match TrailingWhitespace /\s\+$/
+au InsertLeave * match TrailingWhitespace /\s\+$/
+au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
+
+
+" FILE TYPE CONFIGS
+autocmd FileType make setlocal noexpandtab list
+autocmd FileType tex setlocal spell textwidth=79
 
 " SEARCH
 set hlsearch            " Highlight search
@@ -67,7 +67,6 @@ set hidden              " Allow me to switch buffer without saving
     " | onoremap (omap) |   -    |       -       |         y        |
     " ===============================================================
     let mapleader=','
-    let maplocalleader='\'
 
     " ,space to turn on/off highlighted search
     nmap <silent><leader><space> :noh<cr>
