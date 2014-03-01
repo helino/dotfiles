@@ -1,6 +1,0 @@
-set from = "Erik Helin <firstname.lastname@host>"
-set folder = ~/.mail/account
-set spoolfile = "+INBOX"
-set record = "+Sent Items"
-set postponed = "+Drafts"
-source ~/.mutt/mailboxes

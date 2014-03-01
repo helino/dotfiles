@@ -1,5 +1,0 @@
-$if mode=vi
-    set keymap vi-insert
-    "jj": vi-movement-mode
-    "\C-l": clear-screen
-$endif
