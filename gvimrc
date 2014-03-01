@@ -1,4 +1,4 @@
-" remove toolbar    
+" remove toolbar
 set guioptions-=T
 
 " remove scrollbars
