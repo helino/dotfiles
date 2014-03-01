@@ -1,12 +1,11 @@
 [ui]
 username = ehelin
 ignore = ~/.hgignore
+merge = vimdiff
 
 [merge-tools]
-splice.executable = vim
-splice.args = -f $base $local $other $output -c 'SpliceInit'
-splice.premerge = keep
-splice.priority = 1
+vimdiff.executable = vimdiff
+vimdiff.args = -d $base $local $output $other -c "wincmd J"
 
 [extensions]
 graphlog =
@@ -16,7 +15,6 @@ color =
 purge =
 pager =
 record =
-shelve =
 hgext.extdiff =
 
 [extdiff]
