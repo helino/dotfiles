@@ -12,7 +12,13 @@ hg_qq() {
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# share history
+shopt -s histappend
+history -a
+
 PS1="[\u@\h:\w\$(hg_qq)]\n> "
+
+export PATH=$PATH:$HOME/bin
 
 # enable bash completion in interactive shells
 if ! shopt -oq posix; then
@@ -30,3 +36,4 @@ alias ff='firefox'
 alias fn='find . -name '
 alias v='vim'
 alias e='emacs'
+
