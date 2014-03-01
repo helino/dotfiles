@@ -1,0 +1,11 @@
+syntax: glob
+*.swp
+*.rej
+hotspot.log
+*.patch
+tags
+JTwork
+JTreport
+
+syntax: regexp
+.*webrev.*
