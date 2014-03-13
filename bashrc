@@ -35,5 +35,4 @@ alias g='grep --dereference-recursive --color=auto --line-number --binary-files=
 alias ff='firefox'
 alias fn='find . -name '
 alias v='vim'
-alias e='emacs'
-
+alias e='emacs --fullscreen'
