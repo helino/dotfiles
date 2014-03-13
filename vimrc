@@ -34,6 +34,7 @@ au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
 " FILE TYPE CONFIGS
 autocmd FileType make setlocal noexpandtab list
 autocmd FileType tex setlocal spell textwidth=79
+autocmd FileType cpp setlocal ts=2 sw=2
 
 " SEARCH
 set hlsearch            " Highlight search
