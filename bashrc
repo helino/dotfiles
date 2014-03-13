@@ -18,7 +18,7 @@ history -a
 
 PS1="[\u@\h:\w\$(hg_qq)]\n> "
 
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/work/bin
 
 # enable bash completion in interactive shells
 if ! shopt -oq posix; then
