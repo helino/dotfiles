@@ -30,6 +30,7 @@ ll = !$HG glog
 qtip = !$HG export qtip
 ql = qseries -v
 qvimdiff = vimdiff -r -2
+nudge = push --rev .
 
 [http_proxy]
 host =
@@ -39,3 +40,6 @@ pager = less -FRX
 
 [defaults]
 update = --check
+
+[bookmarks]
+track.current = True
