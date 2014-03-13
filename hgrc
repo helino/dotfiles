@@ -12,7 +12,6 @@ graphlog =
 mq =
 rebase =
 color =
-purge =
 pager =
 record =
 hgext.extdiff =
@@ -37,3 +36,6 @@ host =
 
 [pager]
 pager = less -FRX
+
+[defaults]
+update = --check
