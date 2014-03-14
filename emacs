@@ -36,13 +36,13 @@
 (load-theme 'solarized-dark t)
 (setq show-trailing-whitespace t)
 
-(defun join-below()
+(defun join-line-below()
   (interactive)
+  (move-end-of-line nil)
   (next-line)
-  (move-beginning-of-line 1)
+  (move-beginning-of-line nil)
   (join-line))
 
-(global-set-key (kbd "C-j") 'join-below)
 (global-set-key (kbd "C-r") 'execute-extended-command)
 
 (define-key key-translation-map (kbd "C-q") (kbd "C-x"))
