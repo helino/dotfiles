@@ -44,3 +44,8 @@ update = --check
 
 [bookmarks]
 track.current = True
+
+[color]
+qseries.applied = green bold underline
+qseries.unapplied = yellow bold
+qseries.missing = red bold
