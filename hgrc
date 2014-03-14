@@ -15,6 +15,7 @@ color =
 pager =
 record =
 hgext.extdiff =
+histedit =
 
 [extdiff]
 cmd.vimdiff =
