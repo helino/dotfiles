@@ -24,17 +24,12 @@
 (set-default-font "Terminus 12")
 (electric-pair-mode 1)
 
-(global-set-key (kbd "C-x k") 'windmove-up)
-(global-set-key (kbd "C-x h") 'windmove-left)
-(global-set-key (kbd "C-x l") 'windmove-right)
-(global-set-key (kbd "C-x j") 'windmove-down)
-
 (require 'package)
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (load-theme 'solarized-dark t)
-(setq show-trailing-whitespace t)
+(setq-default show-trailing-whitespace t)
 
 (defun join-line-below()
   (interactive)
@@ -43,9 +38,6 @@
   (move-beginning-of-line nil)
   (join-line))
 
-(global-set-key (kbd "C-r") 'execute-extended-command)
-
-(define-key key-translation-map (kbd "C-q") (kbd "C-x"))
 
 (column-number-mode)
 
@@ -62,5 +54,42 @@
     (ido-completing-read "Filename: " (hg-manifest) nil t)
     (hg-root))))
 
-(define-key input-decode-map (kbd "C-i") (kbd "H-i"))
-(global-set-key (kbd "H-i") 'ido-find-in-manifest)
+(defun kill-and-delete-window()
+  (interactive)
+  (kill-buffer)
+  (delete-window))
+
+(defun split-open-term()
+  (interactive)
+  (split-window-sensibly (selected-window))
+  (other-window 1)
+  (ansi-term (getenv "SHELL")))
+
+(define-prefix-command 'leader-map)
+(global-set-key (kbd "C-q") 'leader-map)
+(define-key leader-map (kbd "q") 'kill-and-delete-window)
+
+(define-key leader-map (kbd "k") 'windmove-up)
+(define-key leader-map (kbd "h") 'windmove-left)
+(define-key leader-map (kbd "l") 'windmove-right)
+(define-key leader-map (kbd "j") 'windmove-down)
+(define-key leader-map (kbd "t") 'split-open-term)
+(define-key leader-map (kbd "r") 'execute-extended-command)
+(define-key leader-map (kbd "TAB") 'ido-find-in-manifest)
+
+; shadow mapping from C-x
+(define-key leader-map (kbd "C-f") 'find-file)
+(define-key leader-map (kbd "C-s") 'save-buffer)
+(define-key leader-map (kbd "C-c") 'save-buffers-kill-terminal)
+(define-key leader-map (kbd "0") 'delete-window)
+(define-key leader-map (kbd "1") 'delete-other-windows)
+(define-key leader-map (kbd "2") 'split-window-below)
+(define-key leader-map (kbd "3") 'split-window-right)
+(define-key leader-map (kbd "b") 'switch-to-buffer)
+(define-key leader-map (kbd "o") 'other-window)
+(define-key leader-map (kbd "u") 'undo)
+
+(add-hook 'term-mode-hook
+  (lambda ()
+    (define-key term-raw-map (kbd "C-q") 'leader-map)
+    (setq show-trailing-whitespace nil)))
