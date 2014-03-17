@@ -93,3 +93,28 @@
   (lambda ()
     (define-key term-raw-map (kbd "C-q") 'leader-map)
     (setq show-trailing-whitespace nil)))
+
+(defun org-table-move-cell (direction)
+  (interactive)
+  (let* ((current-col  (org-table-current-column))
+         (current-line (org-table-current-line))
+         (next-col     (+ direction current-col))
+         (field        (org-table-get-field current-col ""))
+         (align-table  t))
+    (org-table-put current-line next-col field align-table)
+    (if (= direction 1)
+        (org-table-next-field)
+        (org-table-previous-field))))
+
+(defun org-table-move-cell-right ()
+  (interactive)
+  (org-table-move-cell 1))
+
+(defun org-table-move-cell-left ()
+  (interactive)
+  (org-table-move-cell -1))
+
+(add-hook 'org-mode-hook
+  (lambda ()
+    (local-set-key (kbd "M-<right>") 'org-table-move-cell-right)
+    (local-set-key (kbd "M-<left>") 'org-table-move-cell-left)))
