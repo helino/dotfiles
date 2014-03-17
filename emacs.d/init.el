@@ -60,9 +60,13 @@
   (other-window 1)
   (ansi-term (getenv "SHELL")))
 
+(defun kill-current-buffer()
+  (interactive)
+  (kill-buffer))
+
 (define-prefix-command 'leader-map)
 (global-set-key (kbd "C-q") 'leader-map)
-(define-key leader-map (kbd "q") 'kill-buffer)
+(define-key leader-map (kbd "q") 'kill-current-buffer)
 
 (define-key leader-map (kbd "k") 'windmove-up)
 (define-key leader-map (kbd "h") 'windmove-left)
