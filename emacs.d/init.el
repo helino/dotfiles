@@ -120,3 +120,13 @@
   (let ((packages '(solarized-theme magit)))
     (dolist (package packages)
       (package-install package))))
+
+(custom-set-faces
+ '(org-level-1 ((t (:inherit default :foreground "#cb4b16" :height 1.0))))
+ '(org-level-2 ((t (:inherit default :foreground "#859900" :height 1.0))))
+ '(org-level-3 ((t (:inherit default :foreground "#268bd2" :height 1.0))))
+ '(org-level-4 ((t (:inherit default :foreground "#b58900" :height 1.0))))
+ '(org-level-5 ((t (:inherit default :foreground "#2aa198" :height 1.0))))
+ '(org-level-6 ((t (:inherit default :foreground "#859900" :height 1.0))))
+ '(org-level-7 ((t (:inherit default :foreground "#dc322f" :height 1.0))))
+ '(org-level-8 ((t (:inherit deafult :foreground "#268bd2" :height 1.0)))))
