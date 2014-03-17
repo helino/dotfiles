@@ -54,11 +54,6 @@
     (ido-completing-read "Filename: " (hg-manifest) nil t)
     (hg-root))))
 
-(defun kill-and-delete-window()
-  (interactive)
-  (kill-buffer)
-  (delete-window))
-
 (defun split-open-term()
   (interactive)
   (split-window-sensibly (selected-window))
@@ -67,7 +62,7 @@
 
 (define-prefix-command 'leader-map)
 (global-set-key (kbd "C-q") 'leader-map)
-(define-key leader-map (kbd "q") 'kill-and-delete-window)
+(define-key leader-map (kbd "q") 'kill-buffer)
 
 (define-key leader-map (kbd "k") 'windmove-up)
 (define-key leader-map (kbd "h") 'windmove-left)
