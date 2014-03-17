@@ -118,3 +118,10 @@
   (lambda ()
     (local-set-key (kbd "M-<right>") 'org-table-move-cell-right)
     (local-set-key (kbd "M-<left>") 'org-table-move-cell-left)))
+
+(defun install-my-packages ()
+  (interactive)
+  (package-refresh-contents)
+  (let ((packages '(solarized-theme magit)))
+    (dolist (package packages)
+      (package-install package))))
