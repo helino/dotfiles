@@ -1,7 +1,8 @@
-hg_qq() {
-    local q=$(hg qq --active 2>/dev/null)
-    if [ -n "$q" ]; then
-        echo -n " ($q)"
+hg_book() {
+    local b=$(hg bookmark 2>/dev/null | grep -v "no bookmarks set")
+    if [ -n "$b" ]; then
+        local current=$(echo "$b" | grep \* | cut -d ' ' -f 3)
+        echo -n " ($current)"
     fi
 }
 
@@ -16,7 +17,7 @@ shopt -s checkwinsize
 shopt -s histappend
 history -a
 
-PS1="[\u@\h:\w\$(hg_qq)]\n> "
+PS1="[\u@\h:\w\$(hg_book)]\n> "
 
 export PATH=$PATH:$HOME/bin:$HOME/work/bin
 
