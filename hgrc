@@ -9,7 +9,6 @@ vimdiff.args = -d $base $local $output $other -c "wincmd J"
 
 [extensions]
 graphlog =
-mq =
 rebase =
 color =
 pager =
@@ -28,9 +27,6 @@ unified = 8
 [alias]
 show = !$HG log -pvr $1
 ll = !$HG glog
-qtip = !$HG export qtip
-ql = qseries -v
-qvimdiff = vimdiff -r -2
 nudge = push --rev .
 
 [http_proxy]
@@ -44,8 +40,3 @@ update = --check
 
 [bookmarks]
 track.current = True
-
-[color]
-qseries.applied = green bold underline
-qseries.unapplied = yellow bold
-qseries.missing = red bold
