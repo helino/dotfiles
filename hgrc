@@ -13,11 +13,7 @@ rebase =
 color =
 pager =
 record =
-hgext.extdiff =
 histedit =
-
-[extdiff]
-cmd.vimdiff =
 
 [diff]
 git = 1
