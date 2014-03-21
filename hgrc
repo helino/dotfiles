@@ -26,9 +26,6 @@ show = !$HG log -pvr $1
 ll = !$HG glog
 nudge = push --rev .
 
-[http_proxy]
-host =
-
 [pager]
 pager = less -FRX
 
