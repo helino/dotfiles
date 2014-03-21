@@ -28,6 +28,7 @@ nudge = push --rev .
 
 [pager]
 pager = less -FRX
+attend =
 
 [defaults]
 update = --check
