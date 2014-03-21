@@ -37,7 +37,6 @@ update = --check
 track.current = True
 
 [color]
-mode = terminfo
 ll.rev = yellow
 ll.rev_current = green bold
 ll.bookmark = green
