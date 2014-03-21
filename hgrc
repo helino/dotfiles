@@ -23,7 +23,7 @@ unified = 8
 
 [alias]
 show = !$HG log -pvr $1
-ll = !$HG glog
+ll = glog --template "{ifcontains(rev, revset('.'), '{label(\'ll.rev_current\', rev)}', '{label(\'ll.rev\', rev)}')}:{ifcontains(rev, revset('.'), '{label(\'ll.node_current\', node|short)}', '{label(\'ll.node\', node|short)}')} {ifcontains(rev, revset('.'), '{label(\'ll.bookmark_current\', bookmarks % \'({bookmark})\')}', '{label(\'ll.bookmark\', bookmarks % \'({bookmark})\')}')}\n\t{desc|firstline|fill68|tabindent}\n\n"
 nudge = push --rev .
 
 [pager]
@@ -35,3 +35,13 @@ update = --check
 
 [bookmarks]
 track.current = True
+
+[color]
+mode = terminfo
+ll.rev = yellow
+ll.rev_current = green bold
+ll.bookmark = green
+ll.bookmark_current = green bold
+ll.bugid = white none
+ll.node = white
+ll.node_current = white bold
