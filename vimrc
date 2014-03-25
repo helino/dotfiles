@@ -44,7 +44,7 @@ set ignorecase          " Ignore case completely
 set include-=i          " Do not search header files when autocompleting
 
 " OPEN FILES
-set wildchar=<Tab> wildmenu wildmode=full
+set wildchar=<Tab> wildmenu wildmode=longest:full,full
 set completeopt=menu,menuone,longest
 set path+=**            " Add subdirectories to path
 let g:netrw_liststyle = 3
