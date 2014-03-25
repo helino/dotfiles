@@ -116,7 +116,8 @@
 (add-hook 'org-mode-hook
   (lambda ()
     (local-set-key (kbd "M-<right>") 'org-table-move-cell-right)
-    (local-set-key (kbd "M-<left>") 'org-table-move-cell-left)))
+    (local-set-key (kbd "M-<left>") 'org-table-move-cell-left)
+    (local-set-key (kbd "RET") 'org-return-indent)))
 
 (defun install-my-packages ()
   (interactive)
