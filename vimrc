@@ -21,6 +21,8 @@ set matchtime=1         " the time for showmatch
 set laststatus=2        " always show the statusline
 autocmd BufNewFile,BufRead *.json set ft=javascript " use js syntax for json
 autocmd BufNewFile,BufRead *.md set ft=markdown " .md files are markdown
+autocmd BufNewFile,BufRead *.make set ft=make " .make files are Makefiles
+autocmd BufNewFile,BufRead *.gmk set ft=make " .gmk files are Makefiles
 
 " based on http://vim.wikia.com/wiki/Highlight_unwanted_spaces
 highlight TrailingWhitespace ctermbg=red ctermfg=white
