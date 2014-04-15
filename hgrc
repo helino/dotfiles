@@ -24,12 +24,12 @@ unified = 8
 [alias]
 ll = glog --template "{ifcontains(rev, revset('.'), '{label(\'ll.rev_current\', rev)}', '{label(\'ll.rev\', rev)}')}:{ifcontains(rev, revset('.'), '{label(\'ll.node_current\', node|short)}', '{label(\'ll.node\', node|short)}')} {ifcontains(rev, revset('.'), '{label(\'ll.bookmark_current\', bookmarks % \'({bookmark})\')}', '{label(\'ll.bookmark\', bookmarks % \'({bookmark})\')}')}\n\t{desc|firstline|fill68|tabindent}\n\n"
 nudge = push --rev .
-bedit = histedit "min(ancestors('$1') - ancestors(master))"
+bedit = !$HG histedit "min(ancestors($(hg bookmark | grep \* | cut -d ' ' -f 3)) - ancestors(master))"
+webrev = !webrev -Nr .^
 
 [pager]
 pager = less -FRX
-attend =
-ignore = histedit, bedit
+attend = out, outgoing, diff, export, log, ll, help, cat, glog
 
 [defaults]
 update = --check
