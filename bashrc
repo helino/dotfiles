@@ -6,6 +6,14 @@ hg_book() {
     fi
 }
 
+grepless() {
+    grep --dereference-recursive        \
+         --color=always                 \
+         --line-number                  \
+         --binary-files=without-match   \
+         "$@" | less -FRX
+}
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -32,7 +40,7 @@ fi
 
 # aliases
 alias tls='tmux ls'
-alias g='grep --dereference-recursive --color=auto --line-number --binary-files=without-match'
+alias g='grepless'
 alias ff='firefox'
 alias fn='find . -name '
 alias v='vim'
