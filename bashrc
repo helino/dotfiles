@@ -27,7 +27,7 @@ history -a
 
 PS1="[\u@\h:\w\$(hg_book)]\n> "
 
-export PATH=$HOME/bin:$HOME/work/bin:$PATH
+export PATH=$HOME/bin:$HOME/bin/jdk1.8.0_05/bin:$HOME/work/bin:$PATH
 
 # enable bash completion in interactive shells
 if ! shopt -oq posix; then
