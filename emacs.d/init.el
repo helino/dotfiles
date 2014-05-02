@@ -47,6 +47,13 @@
 
 (defun hg-root() (replace-regexp-in-string "\n" "" (sh "hg root")))
 
+(defun grep-from-hg-root(regexp)
+  (interactive "sPattern: ")
+  (let ((old-working-dir default-directory))
+    (cd (hg-root))
+    (grep (concat "grep -R -n -I " regexp " ."))
+    (cd old-working-dir)))
+
 (defun ido-find-in-manifest()
   (interactive)
   (find-file
@@ -64,6 +71,8 @@
   (interactive)
   (kill-buffer))
 
+(global-set-key (kbd "C-j") 'join-line-below)
+
 (define-prefix-command 'leader-map)
 (global-set-key (kbd "C-q") 'leader-map)
 (define-key leader-map (kbd "q") 'kill-current-buffer)
@@ -75,6 +84,7 @@
 (define-key leader-map (kbd "t") 'split-open-term)
 (define-key leader-map (kbd "r") 'execute-extended-command)
 (define-key leader-map (kbd "TAB") 'ido-find-in-manifest)
+(define-key leader-map (kbd "g") 'grep-from-hg-root)
 
 ; shadow mapping from C-x
 (define-key leader-map (kbd "C-f") 'find-file)
