@@ -15,6 +15,7 @@ pager =
 record =
 histedit =
 strip =
+remotebranches = ~/.hg_remotebranches.py
 
 [diff]
 git = 1
