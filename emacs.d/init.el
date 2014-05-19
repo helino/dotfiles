@@ -27,6 +27,14 @@
 (electric-pair-mode 1)
 
 (require 'package)
+
+(defun install-my-packages ()
+  (interactive)
+  (package-refresh-contents)
+  (let ((packages '(solarized-theme magit key-chord evil)))
+    (dolist (package packages)
+      (package-install package))))
+
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
@@ -116,13 +124,6 @@
     (local-set-key (kbd "M-<right>") 'org-table-move-cell-right)
     (local-set-key (kbd "M-<left>") 'org-table-move-cell-left)
     (local-set-key (kbd "RET") 'org-return-indent)))
-
-(defun install-my-packages ()
-  (interactive)
-  (package-refresh-contents)
-  (let ((packages '(solarized-theme magit key-chord evil)))
-    (dolist (package packages)
-      (package-install package))))
 
 (add-to-list 'auto-mode-alist '("kmail.*" . mail-mode))
 
