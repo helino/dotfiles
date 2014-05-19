@@ -1,3 +1,5 @@
+(add-to-list 'load-path "~/.emacs.d/lisp")
+
 (blink-cursor-mode 0)
 (setq blink-cursor-mode nil)
 (setq inhibit-startup-message t
@@ -28,31 +30,35 @@
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
+(require 'evil)
+(evil-mode 1)
+
+(require 'key-chord)
+(key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
+(key-chord-mode 1)
+
 (load-theme 'solarized-dark t)
 (setq-default show-trailing-whitespace t)
-
-(defun join-line-below()
-  (interactive)
-  (move-end-of-line nil)
-  (next-line)
-  (move-beginning-of-line nil)
-  (join-line))
-
 
 (column-number-mode)
 
 (defun sh (cmd) (shell-command-to-string cmd))
 
-(defun hg-manifest() (split-string (sh "hg manifest")))
+(defun leader (s)
+  (kbd (concat "M-" s)))
 
-(defun hg-root() (replace-regexp-in-string "\n" "" (sh "hg root")))
+(setq grep-command "grep  -H -R -n -I ")
 
-(defun grep-from-hg-root(regexp)
-  (interactive "sPattern: ")
-  (let ((old-working-dir default-directory))
-    (cd (hg-root))
-    (grep (concat "grep -R -n -I " regexp " ."))
-    (cd old-working-dir)))
+(defun split-open-term()
+  (interactive)
+  (split-window-sensibly (selected-window))
+  (other-window 1)
+  (ansi-term (getenv "SHELL")))
+
+(add-hook 'term-mode-hook
+  (lambda ()
+    (define-key term-raw-map (kbd "C-w") 'evil-window-map)
+    (setq show-trailing-whitespace nil)))
 
 (defun ido-find-in-manifest()
   (interactive)
@@ -61,47 +67,29 @@
     (ido-completing-read "Filename: " (hg-manifest) nil t)
     (hg-root))))
 
-(defun split-open-term()
+(defun list-files ()
+  (split-string (sh "find -not -path './build*' -not -path '*hg*' -type f")))
+
+(defun no-cd (f)
+  (let ((old-default-directory default-directory))
+    (funcall f)
+    (setq default-directory old-default-directory)))
+
+(defun ido-find()
   (interactive)
-  (split-window-sensibly (selected-window))
-  (other-window 1)
-  (ansi-term (getenv "SHELL")))
+  (no-cd (lambda ()
+    (find-file
+      (expand-file-name
+        (ido-completing-read "Filename: " (list-files) nil t))))))
 
-(defun kill-current-buffer()
+(defun ido-file-file-no-cd ()
   (interactive)
-  (kill-buffer))
+  (no-cd (lambda () (ido-find-file))))
 
-(global-set-key (kbd "C-j") 'join-line-below)
-
-(define-prefix-command 'leader-map)
-(global-set-key (kbd "C-q") 'leader-map)
-(define-key leader-map (kbd "q") 'kill-current-buffer)
-
-(define-key leader-map (kbd "k") 'windmove-up)
-(define-key leader-map (kbd "h") 'windmove-left)
-(define-key leader-map (kbd "l") 'windmove-right)
-(define-key leader-map (kbd "j") 'windmove-down)
-(define-key leader-map (kbd "t") 'split-open-term)
-(define-key leader-map (kbd "r") 'execute-extended-command)
-(define-key leader-map (kbd "TAB") 'ido-find-in-manifest)
-(define-key leader-map (kbd "g") 'grep-from-hg-root)
-
-; shadow mapping from C-x
-(define-key leader-map (kbd "C-f") 'find-file)
-(define-key leader-map (kbd "C-s") 'save-buffer)
-(define-key leader-map (kbd "C-c") 'save-buffers-kill-terminal)
-(define-key leader-map (kbd "0") 'delete-window)
-(define-key leader-map (kbd "1") 'delete-other-windows)
-(define-key leader-map (kbd "2") 'split-window-below)
-(define-key leader-map (kbd "3") 'split-window-right)
-(define-key leader-map (kbd "b") 'switch-to-buffer)
-(define-key leader-map (kbd "o") 'other-window)
-(define-key leader-map (kbd "u") 'undo)
-
-(add-hook 'term-mode-hook
-  (lambda ()
-    (define-key term-raw-map (kbd "C-q") 'leader-map)
-    (setq show-trailing-whitespace nil)))
+(define-key evil-normal-state-map (leader "g") 'grep)
+(define-key evil-motion-state-map (kbd "C-u") 'evil-scroll-up)
+(define-key evil-normal-state-map (leader "f") 'ido-find)
+(define-key evil-normal-state-map (leader "b") 'ido-switch-buffer)
 
 (defun org-table-move-cell (direction)
   (interactive)
@@ -132,16 +120,22 @@
 (defun install-my-packages ()
   (interactive)
   (package-refresh-contents)
-  (let ((packages '(solarized-theme magit)))
+  (let ((packages '(solarized-theme magit key-chord evil)))
     (dolist (package packages)
       (package-install package))))
 
 (custom-set-faces
- '(org-level-1 ((t (:inherit default :foreground "#cb4b16" :height 1.0))))
- '(org-level-2 ((t (:inherit default :foreground "#859900" :height 1.0))))
- '(org-level-3 ((t (:inherit default :foreground "#268bd2" :height 1.0))))
- '(org-level-4 ((t (:inherit default :foreground "#b58900" :height 1.0))))
- '(org-level-5 ((t (:inherit default :foreground "#2aa198" :height 1.0))))
- '(org-level-6 ((t (:inherit default :foreground "#859900" :height 1.0))))
- '(org-level-7 ((t (:inherit default :foreground "#dc322f" :height 1.0))))
- '(org-level-8 ((t (:inherit deafult :foreground "#268bd2" :height 1.0)))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-level-1 ((t (:inherit default :foreground "#cb4b16" :height 1.0))) t)
+ '(org-level-2 ((t (:inherit default :foreground "#859900" :height 1.0))) t)
+ '(org-level-3 ((t (:inherit default :foreground "#268bd2" :height 1.0))) t)
+ '(org-level-4 ((t (:inherit default :foreground "#b58900" :height 1.0))) t)
+ '(org-level-5 ((t (:inherit default :foreground "#2aa198" :height 1.0))) t)
+ '(org-level-6 ((t (:inherit default :foreground "#859900" :height 1.0))) t)
+ '(org-level-7 ((t (:inherit default :foreground "#dc322f" :height 1.0))) t)
+ '(org-level-8 ((t (:inherit deafult :foreground "#268bd2" :height 1.0))) t))
+
+(add-to-list 'default-frame-alist '(font . "Terminus-12"))
