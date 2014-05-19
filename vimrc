@@ -44,6 +44,7 @@ set incsearch           " Incremental search, search as you type
 set smartcase           " Ignore case when searching lowercase
 set ignorecase          " Ignore case completely
 set include-=i          " Do not search header files when autocompleting
+set grepprg=grep\ -H\ -R\ -n\ -I\ $*
 
 " OPEN FILES
 set wildchar=<Tab> wildmenu wildmode=longest:full,full
