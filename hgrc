@@ -5,7 +5,7 @@ merge = vimdiff
 
 [merge-tools]
 vimdiff.executable = vimdiff
-vimdiff.args = -d $base $local $output $other -c "wincmd J"
+vimdiff.args = -d $output $local $base $other -c "wincmd J"
 
 [extensions]
 graphlog =
