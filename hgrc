@@ -25,8 +25,12 @@ unified = 8
 [alias]
 ll = glog
 nudge = push --rev .
-bedit = !$HG histedit "min(ancestors($(hg bookmark | grep \* | cut -d ' ' -f 3)) - ancestors(master))"
 webrev = !webrev -Nr .^
+bedit = !$HG histedit "min(branch($(hg branch)))"
+bs = branches
+blog = !$HG glog -b "$(hg branch)"
+bl = blog
+bstrip = !$HG strip -r "branch($1)"
 
 [pager]
 pager = less -FRX
