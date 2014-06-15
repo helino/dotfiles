@@ -87,3 +87,6 @@ set hidden              " Allow me to switch buffer without saving
     " move between visual lines, not logical
     nmap j gj
     nmap k gk
+
+    " C-g to grep!
+    nmap <C-g> :grep! <cword><cr>
