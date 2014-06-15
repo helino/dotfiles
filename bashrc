@@ -14,8 +14,10 @@ grepless() {
          "$@" | less -FRX
 }
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+
+# ulimited history
+HISTSIZE=-1
+HISTFILESIZE=-1
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -39,7 +41,6 @@ if ! shopt -oq posix; then
 fi
 
 # aliases
-alias tls='tmux ls'
 alias g='grepless'
 alias ff='firefox'
 alias fn='find . -name '
