@@ -16,6 +16,8 @@ record =
 histedit =
 strip =
 remotebranches = ~/.hg_remotebranches.py
+shelve =
+mq =
 
 [diff]
 git = 1
@@ -31,13 +33,12 @@ bs = branches
 blog = !$HG glog -b "$(hg branch)"
 bl = blog
 bstrip = !$HG strip -r "branch($1)"
+qi = qimport
+qs = qseries
 
 [pager]
 pager = less -FRX
-attend = out, outgoing, diff, export, log, ll, help, cat, glog
-
-[defaults]
-update = --check
+attend = out, outgoing, diff, export, log, ll, help, cat, glog, blame, annotate, qdiff
 
 [bookmarks]
 track.current = True
