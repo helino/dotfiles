@@ -40,6 +40,7 @@
 
 (require 'evil)
 (evil-mode 1)
+(setq-default evil-cross-lines 't)
 
 (require 'key-chord)
 (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
