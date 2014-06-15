@@ -74,9 +74,7 @@ set hidden              " Allow me to switch buffer without saving
     " | vnoremap (vmap) |   -    |       y       |         -        |
     " | onoremap (omap) |   -    |       -       |         y        |
     " ===============================================================
-    let mapleader=','
-
-    " ,space to turn on/off highlighted search
+    " \space to turn on/off highlighted search
     nmap <silent><leader><space> :noh<cr>
 
     " easy copy/paste to clipboard
