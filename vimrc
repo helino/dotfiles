@@ -23,6 +23,10 @@ autocmd BufNewFile,BufRead *.json set ft=javascript " use js syntax for json
 autocmd BufNewFile,BufRead *.md set ft=markdown " .md files are markdown
 autocmd BufNewFile,BufRead *.make set ft=make " .make files are Makefiles
 autocmd BufNewFile,BufRead *.gmk set ft=make " .gmk files are Makefiles
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
 " based on http://vim.wikia.com/wiki/Highlight_unwanted_spaces
 highlight TrailingWhitespace ctermbg=red ctermfg=white
