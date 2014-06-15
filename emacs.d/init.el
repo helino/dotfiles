@@ -127,6 +127,10 @@
     (local-set-key (kbd "RET") 'org-return-indent)))
 
 (add-to-list 'auto-mode-alist '("kmail.*" . mail-mode))
+(add-hook 'mail-mode-hook
+  (lambda ()
+    (flyspell-mode)
+    (turn-on-auto-fill)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
