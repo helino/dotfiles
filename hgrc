@@ -39,9 +39,6 @@ qs = qseries
 pager = less -FRX
 attend = out, outgoing, diff, export, log, ll, help, cat, glog, blame, annotate, qdiff
 
-[bookmarks]
-track.current = True
-
 [color]
 ll.rev = yellow
 ll.rev_current = green bold
