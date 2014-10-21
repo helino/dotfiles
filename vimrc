@@ -76,10 +76,6 @@ set hidden              " Allow me to switch buffer without saving
     " \space to turn on/off highlighted search
     nmap <silent><leader><space> :noh<cr>
 
-    " easy copy/paste to clipboard
-    map <leader>y "+y
-    nmap <leader>p "+p
-
     " remap ESC to jj
     imap jj <Esc>
 
