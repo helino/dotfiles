@@ -15,7 +15,6 @@ pager =
 record =
 histedit =
 strip =
-remotebranches = ~/.hg_remotebranches.py
 shelve =
 mq =
 
