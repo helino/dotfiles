@@ -26,7 +26,6 @@ unified = 8
 [alias]
 ll = glog
 nudge = push --rev .
-webrev = !webrev -Nr .^
 bedit = !$HG histedit "min(branch($(hg branch)))"
 bs = branches
 blog = !$HG glog -b "$(hg branch)"
