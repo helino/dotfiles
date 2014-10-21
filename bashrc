@@ -44,3 +44,8 @@ fi
 alias g='grepless'
 alias ff='firefox'
 alias fn='find . -name '
+
+# Completion for the 'hg qc' alias
+_hg_cmd_qc() {
+    COMPREPLY=( $( compgen -W "$(_hg_cmd qqueue --quiet)" "${cur}" ) )
+}
