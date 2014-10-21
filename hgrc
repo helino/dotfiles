@@ -26,11 +26,6 @@ unified = 8
 [alias]
 ll = glog
 nudge = push --rev .
-bedit = !$HG histedit "min(branch($(hg branch)))"
-bs = branches
-blog = !$HG glog -b "$(hg branch)"
-bl = blog
-bstrip = !$HG strip -r "branch($1)"
 qi = qimport
 qs = qseries
 
