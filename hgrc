@@ -31,6 +31,7 @@ qc = ! { if [ -n "$(hg status --quiet)" ]; then $HG shelve; fi } && $HG qpop -a 
 qempty = !$HG qrefresh -X $($HG root)
 qe = qpush -e
 qs = qseries
+show = log -pvr
 
 [pager]
 pager = less -FRX
