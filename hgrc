@@ -38,10 +38,6 @@ pager = less -FRX
 attend = out, outgoing, diff, export, log, ll, help, cat, glog, blame, annotate, qdiff
 
 [color]
-ll.rev = yellow
-ll.rev_current = green bold
-ll.bookmark = green
-ll.bookmark_current = green bold
-ll.bugid = white none
-ll.node = white
-ll.node_current = white bold
+qseries.applied = blue bold underline
+qseries.unapplied = white bold
+qseries.missing = red bold
