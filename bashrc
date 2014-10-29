@@ -44,6 +44,7 @@ fi
 alias g='grepless'
 alias ff='firefox'
 alias fn='find . -name '
+alias ls='ls --color=auto'
 
 # Completion for the 'hg qc' alias
 _hg_cmd_qc() {
