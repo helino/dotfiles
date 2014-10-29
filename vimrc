@@ -12,8 +12,10 @@ set autoindent          " indent a new line equal to the one above.
 set smartindent         " indent a new line after e.g. {
 
 " LOOK
-syntax off              " disable syntax highlightning
+set t_Co=16
+syntax on               " enable syntax highlightning
 set background=dark     " use dark background
+colorscheme solarized
 set showcmd             " show linecount in visual mode
 set showmatch           " show matching parenthesis
 set matchtime=1         " the time for showmatch
