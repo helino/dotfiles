@@ -1,0 +1,141 @@
+# IMAP
+set folder      = imaps://<domain>
+set imap_user   = <email address>
+set spoolfile   = +Inbox
+set imap_check_subscribed
+
+# Store message headers locally to speed things up.
+# If hcache is a folder, Mutt will create sub cache folders for each account which may speeds things even more up.
+set header_cache = ~/.cache/mutt
+
+# Store messages locally to speed things up, like searching message bodies.
+# Can be the same folder as header_cache.
+# This will cost important disk usage according to your e-mail amount.
+set message_cachedir = ~/.cache/mutt
+
+# Specify where to save and/or look for postponed messages.
+set postponed = +Drafts
+
+# Where to copy sent emails
+set record = "+Sent Items"
+
+# Allow Mutt to open new imap connection automatically.
+unset imap_passive
+
+# Keep IMAP connection alive by polling intermittently (time in seconds).
+set imap_keepalive = 60
+
+# How often to check for new mail (time in seconds).
+set mail_check = 90
+set timeout=15
+
+# SMTP
+set realname = <name>
+set from = <email address>
+set use_from = yes
+set smtp_url=smtps://$imap_user@<domain>:<port>
+
+# Options
+set wait_key         = no         # shut up, mutt
+unset mail_check_recent           # a new email is always a new email
+unset move                        # gmail does that
+set delete                        # don't ask, just do
+unset confirmappend               # don't ask, just do!
+set quit                          # don't ask, just do!!
+unset mark_old                    # read/new is good enough for me
+set pipe_decode                   # strip headers and eval mimes when piping
+set thorough_search               # strip headers and eval mimes before searching
+set sleep_time = 0                # do not add any artifical delay
+
+# Status Bar
+set status_chars  = " *%A"
+set status_format = "[ %f %r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Pager
+set pager_format="%4C %Z %[!%b %e at %I:%M %p]  %.20n  %s%* -- (%P)"
+
+# Header Options
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+# Colorscheme
+source ~/.mutt-colors-solarized-dark-16.muttrc
+
+# Keybindings
+## Index and pager
+bind index,pager > next-unread-mailbox
+macro index,pager s "<save-message>=" "save message to folder"
+macro index,pager c "<change-folder>=" "open a different folder"
+macro index,pager d "<save-message>=Trash<enter>" "move message to Trash"
+macro index,pager a "<save-message>=Archives<enter>" "move message to Archives"
+
+## Index
+bind index gg first-entry
+bind index G last-entry
+bind index o display-message
+bind index \CD next-page
+bind index \CU previous-page
+bind index R        group-reply
+bind index <space>  collapse-thread
+bind index N search-opposite
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+bind index p recall-message
+macro index J "<next-unread><refresh>"
+macro index K "<previous-unread><refresh>"
+macro index Enter "<display-message><refresh>"
+
+## Pager
+bind pager j next-line
+bind pager k previous-line
+bind pager gg top
+bind pager G bottom
+bind attach <return> view-mailcap
+bind pager \CD next-page
+bind pager \CU previous-page
+bind pager N search-opposite
+bind pager R        group-reply
+macro pager i "<exit><refresh>"
+macro pager J "<next-undeleted><refresh>"
+macro pager K "<previous-undeleted><refresh>"
+
+## Compose
+bind compose p postpone-message
+
+# View options
+## Index
+set date_format = "%Y-%m-%d"
+set index_format = "[%Z]  %D  %-20.20n  %s"
+set sort = threads                         # like gmail
+set sort_aux = reverse-last-date-received  # like gmail
+set uncollapse_jump                        # don't collapse on an unread message
+set sort_re                                # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+## Pager
+set pager_index_lines = 10
+set pager_context = 3
+set pager_stop
+set menu_scroll
+set tilde
+unset markers
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+auto_view text/html                                      # view html automatically
+
+# Compose
+set envelope_from
+set edit_headers
+set fast_reply
+set askcc
+set fcc_attach
+unset mime_forward
+set forward_format = "Fwd: %s"
+set forward_decode
+set attribution = "On %d, %n wrote:"
+set reply_to
+set reverse_name
+set include
+set forward_quote
+set editor=vim
