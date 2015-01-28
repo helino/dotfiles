@@ -3,6 +3,10 @@ set nocompatible        " dont' care about vi compatability
 set backspace=2         " fixes backspace for weird terminals
 set encoding=utf-8
 
+" Enable bundles
+execute pathogen#infect()
+execute pathogen#helptags()
+
 " INDENTATION
 set tabstop=4           " tab is 4 spaces
 set expandtab           " turn tab into spaces.
@@ -45,16 +49,28 @@ set incsearch           " Incremental search, search as you type
 set smartcase           " Ignore case when searching lowercase
 set ignorecase          " Ignore case completely
 set include-=i          " Do not search header files when autocompleting
-set grepprg=grep\ -H\ -R\ -n\ -I\ $*
+set grepprg=ag\ --ignore\ tags\ --vimgrep\ $* " Use ag instead of grep
+set grepformat=%f:%l:%c:%m
+
 
 " OPEN FILES
 set wildchar=<Tab> wildmenu wildmode=longest:full,full
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/webrev/*
 set completeopt=menu,menuone,longest
 set path+=**            " Add subdirectories to path
 let g:netrw_liststyle = 3
 let g:netrw_list_hide = ".hg"
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+\ --ignore .git
+\ --ignore .svn
+\ --ignore .hg
+\ --ignore .DS_Store
+\ --ignore "**/*.pyc"
+\ -g ""'
+let g:ctrlp_use_caching = 1
 
-set clipboard=unnamed   " Copy/paste should use the X11 clipboard
+
+set clipboard=unnamedplus " Copy/paste should use the X11 clipboard
 set nostartofline       " Return to the same position when changing tabs
 set hidden              " Allow me to switch buffer without saving
 
@@ -83,3 +99,6 @@ set hidden              " Allow me to switch buffer without saving
 
     " C-g to grep!
     nmap <C-g> :grep! <cword><cr>
+
+    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_cmd = 'CtrlP'
